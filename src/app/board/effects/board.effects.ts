@@ -5,7 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { List } from '../models';
+import { Card, List } from '../models';
 import { BoardApi } from '../models/board-api';
 import { BoardApiService } from '../services/board-api.service';
 
@@ -31,6 +31,18 @@ export class BoardEffects {
         this.boardApiService.addList(board.id, action.title).pipe(
           map((list: List) => BoardApiActions.addListSuccess({ list })),
           catchError((error) => of(BoardApiActions.addListFailure({ error })))
+        )
+      )
+    )
+  );
+
+  addCard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.addCard),
+      switchMap((action) =>
+        this.boardApiService.addCard(action.listId, action.title).pipe(
+          map((card: Card) => BoardApiActions.addCardSuccess({ card })),
+          catchError((error) => of(BoardApiActions.addCardFailure({ error })))
         )
       )
     )

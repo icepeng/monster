@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { List } from '../models';
+import { Card, List } from '../models';
 import { BoardApi } from '../models/board-api';
 
 /**
@@ -22,5 +22,15 @@ export const addListSuccess = createAction(
 
 export const addListFailure = createAction(
   '[Board/API] Add List Failure',
+  props<{ error: any }>()
+);
+
+export const addCardSuccess = createAction(
+  '[Board/API] Add Card Success',
+  props<{ card: Card }>()
+);
+
+export const addCardFailure = createAction(
+  '[Board/API] Add Card Failure',
   props<{ error: any }>()
 );

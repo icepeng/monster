@@ -27,6 +27,9 @@ export const reducer = createReducer(
         .reduce((arr, x) => [...arr, ...x], []),
       state
     )
+  ),
+  on(BoardApiActions.addCardSuccess, (state, { card }) =>
+    adapter.addOne(card, state)
   )
   // on(ViewCardPageActions.selectCard, (state, { id }) => ({
   //   ...state,

@@ -46,24 +46,3 @@
   padding-top: 4px;
   padding-bottom: 4px;
 }
-
-.icon-lg {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
-  font-family: trellicons;
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: bottom;
-  height: 32px;
-  line-height: 32px;
-  width: 32px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.icon-close:before {
-  content: "✕";
-}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { List } from '../models';
+import { Card, List } from '../models';
 import { BoardApi } from '../models/board-api';
 
 @Injectable({
@@ -63,6 +63,17 @@ export class BoardApiService {
         .join(''),
       boardId: boardId,
       title: title,
+    });
+  }
+
+  addCard(listId: string, title: string): Observable<Card> {
+    return of({
+      id: [...Array(32)]
+        .map(() => Math.floor(Math.random() * 16).toString(16))
+        .join(''),
+      listId: listId,
+      title: title,
+      description: '',
     });
   }
 }

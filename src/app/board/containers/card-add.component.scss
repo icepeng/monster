@@ -1,0 +1,45 @@
+.card-add-wrapper {
+  min-height: 38px;
+  max-height: 38px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-add {
+  border-radius: 3px;
+  color: #5e6c84;
+  display: block;
+  flex: 1 0 auto;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  position: relative;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(9, 30, 66, 0.08);
+    color: #172b4d;
+  }
+}
+
+.card-add-frame {
+  margin-bottom: 8px;
+}
+
+.card-textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  box-shadow: none;
+  height: auto;
+  margin-bottom: 4px;
+  max-height: 162px;
+  min-height: 54px;
+  overflow-y: auto;
+  padding: 0;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  resize: none;
+}

@@ -6,3 +6,8 @@ export const addList = createAction(
   '[Board Page] Add List',
   props<{ title: string }>()
 );
+
+export const addCard = createAction(
+  '[Board Page] Add Card',
+  props<{ listId: string, title: string }>()
+);

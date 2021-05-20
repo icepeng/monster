@@ -11,6 +11,7 @@ import { CardComponent } from './containers/card.component';
 import { ListAddComponent } from './containers/list-add.component';
 import { ListComponent } from './containers/list.component';
 import { BoardEffects } from './effects/board.effects';
+import { CardAddComponent } from './containers/card-add.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BoardEffects } from './effects/board.effects';
     ListComponent,
     CardComponent,
     ListAddComponent,
+    CardAddComponent,
   ],
   imports: [
     CommonModule,

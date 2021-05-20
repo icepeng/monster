@@ -1,0 +1,26 @@
+<div *ngIf="!isOpen" (click)="open()" class="card-add-wrapper">
+  <div class="card-add">+ Add a card</div>
+</div>
+<div *ngIf="isOpen" class="card-add-frame">
+  <form [formGroup]="formGroup" class="card">
+    <div class="card-details">
+      <textarea
+        formControlName="title"
+        placeholder="Enter a title for this card..."
+        class="card-textarea"
+        cdkTrapFocus
+        cdkTrapFocusAutoCapture
+      ></textarea>
+    </div>
+  </form>
+  <div class="card-add-controls">
+    <button
+      (click)="addCard()"
+      class="btn btn-primary list-add-button"
+      type="button"
+    >
+      Add list
+    </button>
+    <span (click)="close()" class="icon-lg icon-close" href="#"></span>
+  </div>
+</div>

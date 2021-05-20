@@ -8,6 +8,7 @@
         *ngFor="let cardId of cardIds$ | async"
         [id]="cardId"
       ></app-card>
+      <app-card-add [listId]="data.id"></app-card-add>
     </div>
   </div>
 </div>
