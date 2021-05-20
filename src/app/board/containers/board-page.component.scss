@@ -1,0 +1,88 @@
+:host {
+  position: relative;
+  overflow-y: auto;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.board-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0;
+  position: relative;
+}
+
+.board-header {
+  background: rgba(0, 0, 0, 0.24);
+  height: auto;
+  padding: 8px 4px 4px 8px;
+  position: relative;
+}
+
+.board-header-btn {
+  border-radius: 3px;
+  color: #fff;
+  cursor: default;
+  float: left;
+  font-size: 14px;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 4px 4px 0;
+  max-width: 400px;
+  overflow: hidden;
+  padding-left: 32px;
+  position: relative;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+.board-header-btn-text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  padding: 0 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.board-header-btn.board-name {
+  background-color: hsla(0, 0%, 100%, 0.24);
+  cursor: default;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  padding: 0;
+  text-decoration: none;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-wrapper {
+  width: 272px;
+  margin: 0 4px;
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.add-list {
+  border-radius: 3px;
+  height: auto;
+  min-height: 32px;
+  padding: 4px;
+  background-color: hsla(0, 0%, 100%, 0.24);
+  cursor: pointer;
+
+  > .placeholder {
+    color: #fff;
+    padding: 6px 8px;
+  }
+}

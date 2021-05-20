@@ -1,4 +1,15 @@
-<div *ngIf="data$ | async as data">
-    <div>{{ data.title }}</div>
-    <app-list *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
+<div class="board-wrapper" *ngIf="data$ | async as data">
+  <div class="board-header">
+    <div class="board-header-btn board-name">
+      <h1 class="board-header-btn-text">
+        {{ data.title }}
+      </h1>
+    </div>
+  </div>
+  <div class="board">
+    <app-list class="list-wrapper" *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
+    <div class="list-wrapper add-list">
+      <div class="placeholder">+ Add another list</div>
+    </div>
+  </div>
 </div>
