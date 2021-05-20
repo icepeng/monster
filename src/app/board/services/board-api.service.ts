@@ -11,7 +11,7 @@ export class BoardApiService {
   getBoard(): Observable<BoardApi> {
     return of({
       id: '0',
-      title: 'test',
+      title: 'Sample board',
       lists: [
         {
           id: '0',

@@ -7,6 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 import { ROOT_REDUCERS, metaReducers } from './reducers';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ROOT_REDUCERS, metaReducers } from './reducers';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
