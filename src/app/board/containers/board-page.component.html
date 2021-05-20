@@ -1,0 +1,4 @@
+<div *ngIf="data$ | async as data">
+    <div>{{ data.title }}</div>
+    <app-list *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
+</div>

@@ -1,10 +1,24 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { NotFoundPageComponent } from '@monster/core/containers/not-found-page.component';
+
+export const routes: Routes = [
+  { path: '', redirectTo: '/board', pathMatch: 'full' },
+  {
+    path: 'board',
+    loadChildren: () =>
+      import('@monster/board/board.module').then((m) => m.BoardModule),
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundPageComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

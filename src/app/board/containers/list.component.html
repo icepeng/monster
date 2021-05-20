@@ -1,0 +1,4 @@
+<div *ngIf="data$ | async as data">
+    <div>{{ data.title }}</div>
+    <app-card *ngFor="let cardId of cardIds$ | async" [id]="cardId"></app-card>
+</div>
