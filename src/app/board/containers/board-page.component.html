@@ -7,9 +7,7 @@
     </div>
   </div>
   <div class="board">
-    <app-list class="list-wrapper" *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
-    <div class="list-wrapper add-list">
-      <div class="placeholder">+ Add another list</div>
-    </div>
+    <app-list *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
+    <app-list-add></app-list-add>
   </div>
 </div>

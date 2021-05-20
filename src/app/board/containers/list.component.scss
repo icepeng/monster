@@ -1,3 +1,13 @@
+.list-wrapper {
+  width: 272px;
+  margin: 0 4px;
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
 .list {
   background-color: #ebecf0;
   border-radius: 3px;

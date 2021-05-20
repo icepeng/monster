@@ -1,8 +1,13 @@
-<div class="list" *ngIf="data$ | async as data">
-  <div class="list-header">
-    <div class="list-header-name">{{ data.title }}</div>
-  </div>
-  <div class="list-cards">
-    <app-card *ngFor="let cardId of cardIds$ | async" [id]="cardId"></app-card>
+<div class="list-wrapper">
+  <div class="list" *ngIf="data$ | async as data">
+    <div class="list-header">
+      <div class="list-header-name">{{ data.title }}</div>
+    </div>
+    <div class="list-cards">
+      <app-card
+        *ngFor="let cardId of cardIds$ | async"
+        [id]="cardId"
+      ></app-card>
+    </div>
   </div>
 </div>

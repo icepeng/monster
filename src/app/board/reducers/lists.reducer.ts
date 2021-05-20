@@ -1,7 +1,7 @@
 import { List } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { BoardApiActions } from '../actions';
+import { BoardApiActions, BoardPageActions } from '../actions';
 
 export const listsFeatureKey = 'lists';
 
@@ -21,5 +21,8 @@ export const reducer = createReducer(
       board.lists.map(({ cards, ...list }) => list),
       state
     )
+  ),
+  on(BoardApiActions.addListSuccess, (state, { list }) =>
+    adapter.addOne(list, state)
   )
 );
