@@ -44,3 +44,13 @@ export const moveListFailure = createAction(
   '[Board/API] Move List Failure',
   props<{ error: any }>()
 );
+
+export const moveCardSuccess = createAction(
+  '[Board/API] Move Card Success',
+  props<{ cards: Card[] }>()
+);
+
+export const moveCardFailure = createAction(
+  '[Board/API] Move Card Failure',
+  props<{ error: any }>()
+);

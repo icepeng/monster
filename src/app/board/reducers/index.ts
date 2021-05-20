@@ -92,3 +92,11 @@ export const getBoardLoading = createSelector(
   fromBoard.getLoading
 );
 export const selectBoard = createSelector(selectBoardState, fromBoard.getBoard);
+
+export const selectBoardLists = createSelector(
+  selectAllLists,
+  selectBoard,
+  (lists, board) => {
+    return board && lists.filter((list) => list.boardId === board.id);
+  }
+);

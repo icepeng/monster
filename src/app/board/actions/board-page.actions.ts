@@ -16,3 +16,13 @@ export const moveList = createAction(
   '[Board Page] Move List',
   props<{ previousIndex: number; currentIndex: number }>()
 );
+
+export const moveCard = createAction(
+  '[Board Page] Move Card',
+  props<{
+    previousList: string;
+    currentList: string;
+    previousIndex: number;
+    currentIndex: number;
+  }>()
+);

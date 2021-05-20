@@ -1,35 +1,69 @@
+import { Card, List } from '../models';
+
+interface Indexable {
+  index: number;
+}
+
+interface ListItem {
+  index: number;
+  listId: string;
+}
+
 function clamp(value: number, max: number): number {
   return Math.max(0, Math.min(max, value));
 }
 
-export function moveItemIndex<T extends Record<string, any>>(
+function reindex<T extends Indexable>(arr: T[]): T[] {
+  return arr.map((item, index) => ({
+    ...item,
+    index: index,
+  }));
+}
+
+export function moveItemIndex<T extends Indexable>(
   array: T[],
-  indexName: string,
   fromIndex: number,
   toIndex: number
 ): T[] {
-  const arr = [...array];
+  const newArray = [...array].sort((a, b) => a.index - b.index);
   const from = clamp(fromIndex, array.length - 1);
   const to = clamp(toIndex, array.length - 1);
 
   if (from === to) {
-    return arr;
+    return newArray;
   }
 
-  const target = arr[from];
+  const target = newArray[from];
   const delta = to < from ? -1 : 1;
 
   for (let i = from; i !== to; i += delta) {
-    arr[i] = {
-      ...arr[i],
-      [indexName]: arr[i + delta][indexName],
-    };
+    newArray[i] = newArray[i + delta];
   }
 
-  arr[to] = {
-    ...arr[to],
-    [indexName]: target[indexName],
-  };
+  newArray[to] = target;
 
-  return arr;
+  return reindex(newArray);
+}
+
+export function transferArrayItem<T extends ListItem>(
+  currentArray: T[],
+  targetArray: T[],
+  currentIndex: number,
+  targetIndex: number,
+  targetListId: string
+): T[] {
+  const current = [...currentArray].sort((a, b) => a.index - b.index);
+  const target = [...targetArray].sort((a, b) => a.index - b.index);
+  const from = clamp(currentIndex, currentArray.length - 1);
+  const to = clamp(targetIndex, targetArray.length);
+
+  if (current.length) {
+    current[from] = {
+      ...current[from],
+      listId: targetListId,
+    };
+    target.splice(to, 0, current.splice(from, 1)[0]);
+  }
+
+  return [...reindex(current), ...reindex(target)];
 }

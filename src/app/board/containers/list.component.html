@@ -10,10 +10,16 @@
       <div class="list-header-name">{{ data.title }}</div>
     </div>
     <div class="list-cards">
-      <app-card
-        *ngFor="let cardId of cardIds$ | async"
-        [id]="cardId"
-      ></app-card>
+      <div
+        class="list-cards-droppable"
+        cdkDropList
+        *ngIf="cardIds$ | async as cardIds"
+        [attr.id]="data.id"
+        [cdkDropListData]="data"
+        (cdkDropListDropped)="dropCard($event)"
+      >
+        <app-card *ngFor="let cardId of cardIds" [id]="cardId"></app-card>
+      </div>
       <app-card-add [listId]="data.id"></app-card-add>
     </div>
   </div>

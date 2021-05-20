@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Card, List } from '../models';
 import { BoardApi } from '../models/board-api';
-import { moveItemIndex } from './util';
+import { moveItemIndex, transferArrayItem } from './util';
 
 @Injectable({
   providedIn: 'root',
@@ -27,12 +27,14 @@ export class BoardApiService {
             {
               id: '0',
               listId: '0',
+              index: 0,
               title: '몬스터',
               description: '에너지',
             },
             {
               id: '1',
               listId: '0',
+              index: 1,
               title: '레드불',
               description: '날개를 달아줘요',
             },
@@ -47,12 +49,14 @@ export class BoardApiService {
             {
               id: '2',
               listId: '1',
+              index: 0,
               title: '캘리포니아 골드C',
               description: '1000mg',
             },
             {
               id: '3',
               listId: '1',
+              index: 1,
               title: '코카콜라',
               description: '500ml',
             },
@@ -84,18 +88,50 @@ export class BoardApiService {
     return this.store.select(fromBoard.selectAllLists).pipe(
       take(1),
       map((lists) => lists.filter((list) => list.boardId === boardId)),
-      map((lists) => moveItemIndex(lists, 'index', previousIndex, currentIndex))
+      map((lists) => moveItemIndex(lists, previousIndex, currentIndex))
     );
   }
 
   addCard(listId: string, title: string): Observable<Card> {
-    return of({
-      id: [...Array(32)]
-        .map(() => Math.floor(Math.random() * 16).toString(16))
-        .join(''),
-      listId: listId,
-      title: title,
-      description: '',
-    });
+    return this.store.select(fromBoard.selectCardIds).pipe(
+      take(1),
+      map((ids) => ({
+        id: [...Array(32)]
+          .map(() => Math.floor(Math.random() * 16).toString(16))
+          .join(''),
+        listId: listId,
+        index: ids.length,
+        title: title,
+        description: '',
+      }))
+    );
+  }
+
+  moveCard(
+    previousListId: string,
+    currentListId: string,
+    previousIndex: number,
+    currentIndex: number
+  ): Observable<Card[]> {
+    return this.store.select(fromBoard.selectAllCards).pipe(
+      take(1),
+      map((cards) => [
+        cards.filter((card) => card.listId === previousListId),
+        cards.filter((card) => card.listId === currentListId),
+      ]),
+      map(([prev, curr]) => {
+        if (previousListId === currentListId) {
+          return moveItemIndex(prev, previousIndex, currentIndex);
+        } else {
+          return transferArrayItem(
+            prev,
+            curr,
+            previousIndex,
+            currentIndex,
+            currentListId
+          );
+        }
+      })
+    );
   }
 }

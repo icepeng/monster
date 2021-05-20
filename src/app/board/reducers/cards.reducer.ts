@@ -30,6 +30,9 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.addCardSuccess, (state, { card }) =>
     adapter.addOne(card, state)
+  ),
+  on(BoardApiActions.moveCardSuccess, (state, { cards }) =>
+    adapter.upsertMany(cards, state)
   )
   // on(ViewCardPageActions.selectCard, (state, { id }) => ({
   //   ...state,

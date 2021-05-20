@@ -62,3 +62,29 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.board-canvas {
+  position: relative;
+  flex-grow: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.24) 0,
+    rgba(0, 0, 0, 0.24) 48px,
+    transparent 80px,
+    transparent
+  );
+}
+
+.board {
+  user-select: none;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
