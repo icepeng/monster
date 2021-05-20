@@ -1,6 +1,12 @@
-<div class="list-wrapper">
-  <div class="list" *ngIf="data$ | async as data">
+<div
+  *ngIf="data$ | async as data"
+  cdkDrag
+  [cdkDragData]="data.id"
+  class="list-wrapper"
+>
+  <div class="list">
     <div class="list-header">
+      <div cdkDragHandle class="list-target"></div>
       <div class="list-header-name">{{ data.title }}</div>
     </div>
     <div class="list-cards">

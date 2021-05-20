@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import * as fromBoard from '@monster/board/reducers';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { Card, List } from '../models';
 import { BoardApi } from '../models/board-api';
+import { moveItemIndex } from './util';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoardApiService {
-  constructor() {}
+  constructor(private store: Store) {}
 
   getBoard(): Observable<BoardApi> {
     return of({
@@ -17,6 +21,7 @@ export class BoardApiService {
         {
           id: '0',
           boardId: '0',
+          index: 0,
           title: 'To-do',
           cards: [
             {
@@ -36,6 +41,7 @@ export class BoardApiService {
         {
           id: '1',
           boardId: '0',
+          index: 1,
           title: 'In-Progress',
           cards: [
             {
@@ -57,13 +63,29 @@ export class BoardApiService {
   }
 
   addList(boardId: string, title: string): Observable<List> {
-    return of({
-      id: [...Array(32)]
-        .map(() => Math.floor(Math.random() * 16).toString(16))
-        .join(''),
-      boardId: boardId,
-      title: title,
-    });
+    return this.store.select(fromBoard.selectListIds).pipe(
+      take(1),
+      map((ids) => ({
+        id: [...Array(32)]
+          .map(() => Math.floor(Math.random() * 16).toString(16))
+          .join(''),
+        index: ids.length,
+        boardId: boardId,
+        title: title,
+      }))
+    );
+  }
+
+  moveList(
+    boardId: string,
+    previousIndex: number,
+    currentIndex: number
+  ): Observable<List[]> {
+    return this.store.select(fromBoard.selectAllLists).pipe(
+      take(1),
+      map((lists) => lists.filter((list) => list.boardId === boardId)),
+      map((lists) => moveItemIndex(lists, 'index', previousIndex, currentIndex))
+    );
   }
 
   addCard(listId: string, title: string): Observable<Card> {

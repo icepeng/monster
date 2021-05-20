@@ -36,6 +36,23 @@ export class BoardEffects {
     )
   );
 
+  moveList$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.moveList),
+      withLatestFrom(this.store.select(fromBoard.selectBoard)),
+      switchMap(([action, board]) =>
+        this.boardApiService
+          .moveList(board.id, action.previousIndex, action.currentIndex)
+          .pipe(
+            map((lists) => BoardApiActions.moveListSuccess({ lists })),
+            catchError((error) =>
+              of(BoardApiActions.moveListFailure({ error }))
+            )
+          )
+      )
+    )
+  );
+
   addCard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.addCard),

@@ -9,5 +9,10 @@ export const addList = createAction(
 
 export const addCard = createAction(
   '[Board Page] Add Card',
-  props<{ listId: string, title: string }>()
+  props<{ listId: string; title: string }>()
+);
+
+export const moveList = createAction(
+  '[Board Page] Move List',
+  props<{ previousIndex: number; currentIndex: number }>()
 );

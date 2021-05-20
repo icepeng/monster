@@ -6,8 +6,19 @@
       </h1>
     </div>
   </div>
-  <div class="board">
-    <app-list *ngFor="let listId of listIds$ | async" [id]="listId"></app-list>
+  <div
+    class="board"
+    cdkDropList
+    *ngIf="listIds$ | async as listIds"
+    [cdkDropListData]="listIds"
+    (cdkDropListDropped)="dropList($event)"
+    cdkDropListOrientation="horizontal"
+  >
+    <app-list
+      [attr.id]="listId"
+      *ngFor="let listId of listIds"
+      [id]="listId"
+    ></app-list>
     <app-list-add></app-list-add>
   </div>
 </div>

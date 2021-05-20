@@ -24,5 +24,8 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.addListSuccess, (state, { list }) =>
     adapter.addOne(list, state)
+  ),
+  on(BoardApiActions.moveListSuccess, (state, { lists }) =>
+    adapter.upsertMany(lists, state)
   )
 );

@@ -34,3 +34,13 @@ export const addCardFailure = createAction(
   '[Board/API] Add Card Failure',
   props<{ error: any }>()
 );
+
+export const moveListSuccess = createAction(
+  '[Board/API] Move List Success',
+  props<{ lists: List[] }>()
+);
+
+export const moveListFailure = createAction(
+  '[Board/API] Move List Failure',
+  props<{ error: any }>()
+);
