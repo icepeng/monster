@@ -26,7 +26,7 @@ export const reducer = createReducer(
   on(BoardApiActions.loadBoardSuccess, (state, { board }) => ({
     loaded: true,
     loading: false,
-    board: board,
+    board: board.board,
   }))
 );
 

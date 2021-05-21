@@ -17,10 +17,7 @@ export const initialState: State = adapter.getInitialState({});
 export const reducer = createReducer(
   initialState,
   on(BoardApiActions.loadBoardSuccess, (state, { board }) =>
-    adapter.setAll(
-      board.lists.map(({ cards, ...list }) => list),
-      state
-    )
+    adapter.setAll(board.lists, state)
   ),
   on(BoardApiActions.addListSuccess, (state, { list }) =>
     adapter.addOne(list, state)

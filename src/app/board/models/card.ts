@@ -4,4 +4,5 @@ export interface Card {
   index: number;
   title: string;
   description: string;
+  due: string | null;
 }
