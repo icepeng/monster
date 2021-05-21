@@ -21,4 +21,8 @@ export class CardComponent implements OnInit {
       .select(fromBoard.selectAllCards)
       .pipe(map((cards) => cards.find((card) => card.id === this.id)!));
   }
+
+  isOverdue(date: string) {
+    return new Date() > new Date(date) ? 'is-due-overdue' : 'is-due-complete';
+  }
 }

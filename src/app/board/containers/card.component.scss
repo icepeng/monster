@@ -59,6 +59,16 @@
   background-color: #519839;
 }
 
+.badge.is-due-overdue {
+  background-color: #eb5a46;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.badge.mod-due-date:hover.is-due-overdue {
+  background-color: #b04632;
+}
+
 .badge-text {
   font-size: 12px;
   padding: 0 4px 0 2px;

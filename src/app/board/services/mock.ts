@@ -240,7 +240,7 @@ export const boardMock: BoardApi = {
       index: 9,
       title: 'User Templates',
       description: `See Trello`,
-      due: null,
+      due: "2021-03-03T08:00:00.000Z",
     },
     {
       id: '17',
@@ -298,7 +298,7 @@ export const boardMock: BoardApi = {
           Scrum for Trello Chrome Extension
           Scrum for Trello Firefox Extension
           Scrum for Trello Safari extension`,
-      due: null,
+      due: "2021-06-15T08:00:00.000Z",
     },
     {
       id: '23',
@@ -379,7 +379,7 @@ export const boardMock: BoardApi = {
           Card Numbers for Trello
           
           Note: This is a 3rd party extension that is not developed by Trello.`,
-      due: null,
+      due: "2021-06-30T08:00:00.000Z",
     },
     {
       id: '29',
