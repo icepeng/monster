@@ -1,5 +1,14 @@
 <div cdkDrag class="card" *ngIf="data$ | async as data">
   <div class="card-details">
     <div class="card-title">{{ data.title }}</div>
+    <div class="badges">
+      <div
+        *ngIf="data.due"
+        class="badge js-due-date-badge mod-due-date is-due-complete"
+        title="This card is complete."
+      >
+        <span class="badge-text js-due-date-text">{{ data.due | date:'MMM d, y' }}</span>
+      </div>
+    </div>
   </div>
 </div>

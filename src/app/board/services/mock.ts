@@ -152,7 +152,7 @@ export const boardMock: BoardApi = {
           Check it out and get inspired! Trello
           
           Did you create an inspiring board yourself and would like to share that with with the Trello community? Feel free to shoot us an email at inspiration@trello.com`,
-      due: null,
+      due: "2020-11-12T08:00:00.000Z",
     },
     {
       id: '8',
@@ -183,7 +183,7 @@ export const boardMock: BoardApi = {
           Bridesmaid board - Wedding Party
           Wedding day timeline - Wedding Day Timeline
           Thank you cards - Wedding Thank You Cards`,
-      due: null,
+      due: "2021-06-03T08:00:00.000Z",
     },
     {
       id: '10',
