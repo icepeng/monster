@@ -25,7 +25,7 @@ export class CardComponent implements OnInit {
       .pipe(map((cards) => cards.find((card) => card.id === this.id)!));
   }
 
-  isOverdue(card: Card) {
+  getDueClass(card: Card) {
     if (card.dueComplete) {
       return 'is-due-complete';
     }
