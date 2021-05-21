@@ -256,7 +256,7 @@ export const boardMock: BoardApi = {
       index: 9,
       title: 'User Templates',
       description: `See Trello`,
-      due: '2021-03-03T08:00:00.000Z',
+      due: '2021-05-22T08:00:00.000Z',
       dueComplete: false,
     },
     {

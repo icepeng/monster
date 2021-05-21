@@ -9,7 +9,9 @@
         (click)="toggleDue(data)"
         title="This card is complete."
       >
-        <span class="badge-text js-due-date-text">{{ data.due | date:'MMM d, y' }}</span>
+        <span class="badge-text js-due-date-text">{{
+          data.due | date: "MMM d, y"
+        }}</span>
       </div>
     </div>
   </div>

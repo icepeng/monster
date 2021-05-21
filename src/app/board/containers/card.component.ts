@@ -24,7 +24,16 @@ export class CardComponent implements OnInit {
   }
 
   isOverdue(card: Card) {
-    return (new Date() > new Date(card.due!) && !card.dueComplete) ? 'is-due-overdue' : 'is-due-complete';
+    if (card.dueComplete) {
+      return 'is-due-complete';
+    }
+    if (new Date() > new Date(card.due!)) {
+      return 'is-due-overdue';
+    }
+    if (new Date().getTime() + 86400000 > new Date(card.due!).getTime()) {
+      return 'is-due-soon';
+    }
+    return '';
   }
 
   toggleDue(card: Card) {

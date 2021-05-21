@@ -49,6 +49,11 @@
   vertical-align: top;
 }
 
+.badge.mod-due-date:hover {
+  border-radius: 3px;
+  background-color: #ebecf0;
+}
+
 .badge.is-due-complete {
   background-color: #61bd4f;
   border-radius: 3px;
@@ -57,6 +62,16 @@
 
 .badge.mod-due-date:hover.is-due-complete {
   background-color: #519839;
+}
+
+.badge.is-due-soon {
+  background-color: #f2d600;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.badge.mod-due-date:hover.is-due-soon {
+  background-color: #d9b51c;
 }
 
 .badge.is-due-overdue {
