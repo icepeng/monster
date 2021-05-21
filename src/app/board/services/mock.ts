@@ -445,7 +445,36 @@ export const boardMock: BoardApi = {
       due: null,
     },
   ],
-  labels: [],
-  cardLabels: [],
+  labels: [
+    {
+      id: '0',
+      boardId: '0',
+      title: 'Feedback',
+      color: '#EB5A46',
+    },
+    {
+      id: '1',
+      boardId: '0',
+      title: 'Essential',
+      color: '#61BD4F',
+    },
+  ],
+  cardLabels: [
+    {
+      id: '0',
+      cardId: '0',
+      labelId: '1',
+    },
+    {
+      id: '1',
+      cardId: '1',
+      labelId: '1',
+    },
+    {
+      id: '2',
+      cardId: '0',
+      labelId: '0',
+    },
+  ],
   comments: [],
 };

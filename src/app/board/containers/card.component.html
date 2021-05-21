@@ -1,5 +1,13 @@
 <div cdkDrag class="card" *ngIf="data$ | async as data">
   <div class="card-details">
+    <div class="card-labels">
+      <app-card-label
+        (click)="toggleLabelExpand()"
+        *ngFor="let label of labels$ | async"
+        [label]="label"
+        [expand]="labelExpand$ | async"
+      ></app-card-label>
+    </div>
     <div class="card-title">{{ data.title }}</div>
   </div>
 </div>

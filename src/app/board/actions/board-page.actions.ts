@@ -26,3 +26,7 @@ export const moveCard = createAction(
     currentIndex: number;
   }>()
 );
+
+export const toggleLabelExpand = createAction(
+  '[Board Page] Toggle Label Expand'
+);
