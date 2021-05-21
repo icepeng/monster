@@ -49,6 +49,9 @@ export class CardComponent implements OnInit {
     if (card.dueComplete) {
       return 'is-due-complete';
     }
+    if (new Date().getTime() > new Date(card.due!).getTime() + 86400000 * 1.5) {
+      return 'is-due-past';
+    }
     if (new Date() > new Date(card.due!)) {
       return 'is-due-overdue';
     }

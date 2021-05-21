@@ -89,6 +89,16 @@
   background-color: #b04632;
 }
 
+.badge.is-due-past {
+  background-color: #ec9488;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.badge.mod-due-date:hover.is-due-past {
+  background-color: #eb5a46;
+}
+
 .badge-text {
   font-size: 12px;
   padding: 0 4px 0 2px;
