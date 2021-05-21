@@ -86,13 +86,13 @@ export class BoardEffects {
     )
   );
 
-  toggleDue$ = createEffect(() =>
+  toggleCardDue$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BoardPageActions.toggleDue),
+      ofType(BoardPageActions.toggleCardDue),
       switchMap((action) =>
-        this.boardApiService.toggleDue(action.cardId).pipe(
-          map((card: Card) => BoardApiActions.toggleDueSuccess({ card })),
-          catchError((error) => of(BoardApiActions.toggleDueFailure({ error })))
+        this.boardApiService.toggleCardDue(action.cardId).pipe(
+          map((card: Card) => BoardApiActions.toggleCardDueSuccess({ card })),
+          catchError((error) => of(BoardApiActions.toggleCardDueFailure({ error })))
         )
       )
     )

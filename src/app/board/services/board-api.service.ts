@@ -89,7 +89,7 @@ export class BoardApiService {
     );
   }
 
-  toggleDue(
+  toggleCardDue(
     cardId: string,
   ): Observable<Card> {
     return this.store.select(fromBoard.selectCardEntities).pipe(

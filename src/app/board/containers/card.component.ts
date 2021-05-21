@@ -60,7 +60,7 @@ export class CardComponent implements OnInit {
 
   toggleDue(card: Card) {
     this.store.dispatch(
-      BoardPageActions.toggleDue({
+      BoardPageActions.toggleCardDue({
         cardId: card.id,
       })
     );

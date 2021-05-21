@@ -55,12 +55,12 @@ export const moveCardFailure = createAction(
   props<{ error: any }>()
 );
 
-export const toggleDueSuccess = createAction(
-  '[Board/API] Toggle Due Success',
+export const toggleCardDueSuccess = createAction(
+  '[Board/API] Toggle Card Due Success',
   props<{ card: Card }>()
 );
 
-export const toggleDueFailure = createAction(
-  '[Board/API] Toggle Due Failure',
+export const toggleCardDueFailure = createAction(
+  '[Board/API] Toggle Card Due Failure',
   props<{ error: any }>()
 );

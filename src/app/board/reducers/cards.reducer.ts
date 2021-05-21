@@ -29,7 +29,7 @@ export const reducer = createReducer(
   on(BoardApiActions.moveCardSuccess, (state, { cards }) =>
     adapter.upsertMany(cards, state)
   ),
-  on(BoardApiActions.toggleDueSuccess, (state, { card }) =>
+  on(BoardApiActions.toggleCardDueSuccess, (state, { card }) =>
     adapter.updateOne({
       id: card.id,
       changes: {
