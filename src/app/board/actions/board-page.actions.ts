@@ -27,6 +27,11 @@ export const moveCard = createAction(
   }>()
 );
 
+export const toggleDue = createAction(
+  '[Board Page] Toggle Due',
+  props<{ cardId: string }>()
+);
+
 export const toggleLabelExpand = createAction(
   '[Board Page] Toggle Label Expand'
 );

@@ -54,3 +54,13 @@ export const moveCardFailure = createAction(
   '[Board/API] Move Card Failure',
   props<{ error: any }>()
 );
+
+export const toggleDueSuccess = createAction(
+  '[Board/API] Toggle Due Success',
+  props<{ card: Card }>()
+);
+
+export const toggleDueFailure = createAction(
+  '[Board/API] Toggle Due Failure',
+  props<{ error: any }>()
+);

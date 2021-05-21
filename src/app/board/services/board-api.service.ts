@@ -56,6 +56,7 @@ export class BoardApiService {
         title: title,
         description: '',
         due: null,
+        dueComplete: false,
       }))
     );
   }
@@ -85,6 +86,20 @@ export class BoardApiService {
           );
         }
       })
+    );
+  }
+
+  toggleDue(
+    cardId: string,
+  ): Observable<Card> {
+    return this.store.select(fromBoard.selectCardEntities).pipe(
+      take(1),
+      map(cards => {
+        return {
+          ...cards[cardId]!,
+          dueComplete: !cards[cardId]?.dueComplete,
+        };
+      }),
     );
   }
 }

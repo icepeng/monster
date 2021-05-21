@@ -86,6 +86,18 @@ export class BoardEffects {
     )
   );
 
+  toggleDue$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.toggleDue),
+      switchMap((action) =>
+        this.boardApiService.toggleDue(action.cardId).pipe(
+          map((card: Card) => BoardApiActions.toggleDueSuccess({ card })),
+          catchError((error) => of(BoardApiActions.toggleDueFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private store: Store,

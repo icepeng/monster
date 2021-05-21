@@ -17,6 +17,8 @@ export class CardComponent implements OnInit {
   labels$!: Observable<Label[]>;
   labelExpand$!: Observable<boolean>;
 
+  dueHover = false;
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -41,5 +43,34 @@ export class CardComponent implements OnInit {
 
   toggleLabelExpand() {
     this.store.dispatch(BoardPageActions.toggleLabelExpand());
+  }
+
+  getDueClass(card: Card) {
+    if (card.dueComplete) {
+      return 'is-due-complete';
+    }
+    if (new Date() > new Date(card.due!)) {
+      return 'is-due-overdue';
+    }
+    if (new Date().getTime() + 86400000 > new Date(card.due!).getTime()) {
+      return 'is-due-soon';
+    }
+    return '';
+  }
+
+  toggleDue(card: Card) {
+    this.store.dispatch(
+      BoardPageActions.toggleDue({
+        cardId: card.id,
+      })
+    );
+  }
+
+  dueMouseEnter(event: MouseEvent) {
+    this.dueHover = true;
+  }
+
+  dueMouseLeave(event: MouseEvent) {
+    this.dueHover = false;
   }
 }
