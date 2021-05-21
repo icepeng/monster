@@ -1,7 +1,7 @@
 import { List } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { BoardApiActions, BoardPageActions } from '../actions';
+import { BoardApiActions } from '../actions';
 
 export const listsFeatureKey = 'lists';
 

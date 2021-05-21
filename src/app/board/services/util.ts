@@ -1,5 +1,3 @@
-import { Card, List } from '../models';
-
 interface Indexable {
   index: number;
 }
