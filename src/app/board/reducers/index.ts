@@ -65,7 +65,10 @@ export const selectSelectedCard = createSelector(
   selectCardEntities,
   selectSelectedCardId,
   (entities, selectedId) => {
-    return selectedId && entities[selectedId];
+    if (!selectedId) {
+      return null;
+    }
+    return entities[selectedId]!;
   }
 );
 

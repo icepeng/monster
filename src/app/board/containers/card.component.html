@@ -1,8 +1,8 @@
-<div cdkDrag class="card" *ngIf="data$ | async as data">
+<div (click)="openCard()" cdkDrag class="card" *ngIf="data$ | async as data">
   <div class="card-details">
     <div class="card-labels">
       <app-card-label
-        (click)="toggleLabelExpand()"
+        (click)="toggleLabelExpand(); $event.stopPropagation();"
         *ngFor="let label of labels$ | async"
         [label]="label"
         [expand]="labelExpand$ | async"
@@ -14,7 +14,7 @@
         *ngIf="data.due"
         class="badge js-due-date-badge mod-due-date"
         [ngClass]="getDueClass(data)"
-        (click)="toggleDue(data)"
+        (click)="toggleDue(data); $event.stopPropagation();"
         (mouseenter)="dueMouseEnter($event)"
         (mouseleave)="dueMouseLeave($event)"
         title="This card is complete."

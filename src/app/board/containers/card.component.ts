@@ -41,6 +41,10 @@ export class CardComponent implements OnInit {
     this.labelExpand$ = this.store.select(fromBoard.selectLabelExpand);
   }
 
+  openCard() {
+    this.store.dispatch(BoardPageActions.selectCard({ cardId: this.id }));
+  }
+
   toggleLabelExpand() {
     this.store.dispatch(BoardPageActions.toggleLabelExpand());
   }
