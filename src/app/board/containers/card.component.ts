@@ -15,6 +15,8 @@ export class CardComponent implements OnInit {
   @Input() id!: string;
   data$!: Observable<Card>;
 
+  dueHover = false;
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -42,5 +44,13 @@ export class CardComponent implements OnInit {
         cardId: card.id,
       })
     );
+  }
+
+  dueMouseEnter(event: MouseEvent) {
+    this.dueHover = true;
+  }
+
+  dueMouseLeave(event: MouseEvent) {
+    this.dueHover = false;
   }
 }
