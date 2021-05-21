@@ -12,6 +12,7 @@ export const addCard = createAction(
   props<{ listId: string; title: string }>()
 );
 
+
 export const moveList = createAction(
   '[Board Page] Move List',
   props<{ previousIndex: number; currentIndex: number }>()
@@ -25,4 +26,9 @@ export const moveCard = createAction(
     previousIndex: number;
     currentIndex: number;
   }>()
+);
+
+export const toggleDue = createAction(
+  '[Board Page] Toggle Due',
+  props<{ cardId: string; }>()
 );

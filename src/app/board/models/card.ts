@@ -5,4 +5,5 @@ export interface Card {
   title: string;
   description: string;
   due: string | null;
+  dueComplete: boolean;
 }

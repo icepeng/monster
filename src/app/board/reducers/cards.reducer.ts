@@ -28,6 +28,14 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.moveCardSuccess, (state, { cards }) =>
     adapter.upsertMany(cards, state)
+  ),
+  on(BoardApiActions.toggleDueSuccess, (state, { card }) =>
+    adapter.updateOne({
+      id: card.id,
+      changes: {
+        dueComplete: card.dueComplete,
+      }
+    }, state)
   )
   // on(ViewCardPageActions.selectCard, (state, { id }) => ({
   //   ...state,

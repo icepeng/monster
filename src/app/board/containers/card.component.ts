@@ -3,6 +3,7 @@ import * as fromBoard from '@monster/board/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BoardPageActions } from '../actions';
 import { Card } from '../models';
 
 @Component({
@@ -22,7 +23,15 @@ export class CardComponent implements OnInit {
       .pipe(map((cards) => cards.find((card) => card.id === this.id)!));
   }
 
-  isOverdue(date: string) {
-    return new Date() > new Date(date) ? 'is-due-overdue' : 'is-due-complete';
+  isOverdue(card: Card) {
+    return (new Date() > new Date(card.due!) && !card.dueComplete) ? 'is-due-overdue' : 'is-due-complete';
+  }
+
+  toggleDue(card: Card) {
+    this.store.dispatch(
+      BoardPageActions.toggleDue({
+        cardId: card.id,
+      })
+    );
   }
 }

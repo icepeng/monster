@@ -54,6 +54,7 @@ export const boardMock: BoardApi = {
           etc
           Often, you can just hover over a card in a list with your mouse and then use a keyboard shortcut. (Which can make it easy to add labels/members/etc to cards without needing to open them)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '1',
@@ -66,6 +67,7 @@ export const boardMock: BoardApi = {
           
           Mentions generate notifications for those mentioned, so please try it on your boards, but not here. Thanks!`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '2',
@@ -95,6 +97,7 @@ export const boardMock: BoardApi = {
           
           will become foo_bar_baz`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '3',
@@ -107,6 +110,7 @@ export const boardMock: BoardApi = {
           add the Feature label (assuming you have one called "feature")
           assign it to Bobby (assuming he's on your board)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '4',
@@ -121,6 +125,7 @@ export const boardMock: BoardApi = {
           
           If you are using chrome and you don't see the "Allow Notifications" link, make sure that you're allowing notifications by checking chrome://settings/content (Settings > Under the Hood > Privacy > Content settings ... > Notifications). You can see a list of accepted sites In Safari in "Preferences" > "Notifications".`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '5',
@@ -129,6 +134,7 @@ export const boardMock: BoardApi = {
       title: 'Trello Dojo ebook',
       description: `A Trello user wrote a guide on learning Trello: Trello Dojo`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '6',
@@ -140,6 +146,7 @@ export const boardMock: BoardApi = {
           Select "Pin to Taskbar"
           Now you can run Trello like a standalone application`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '7',
@@ -152,7 +159,8 @@ export const boardMock: BoardApi = {
           Check it out and get inspired! Trello
           
           Did you create an inspiring board yourself and would like to share that with with the Trello community? Feel free to shoot us an email at inspiration@trello.com`,
-      due: "2020-11-12T08:00:00.000Z",
+      due: '2020-11-12T08:00:00.000Z',
+      dueComplete: false,
     },
     {
       id: '8',
@@ -170,6 +178,7 @@ export const boardMock: BoardApi = {
           Regression Testing
           Adobe Brackets (Trello)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '9',
@@ -183,7 +192,8 @@ export const boardMock: BoardApi = {
           Bridesmaid board - Wedding Party
           Wedding day timeline - Wedding Day Timeline
           Thank you cards - Wedding Thank You Cards`,
-      due: "2021-06-03T08:00:00.000Z",
+      due: '2021-06-03T08:00:00.000Z',
+      dueComplete: false,
     },
     {
       id: '10',
@@ -193,6 +203,7 @@ export const boardMock: BoardApi = {
       description: `Video Game Backlog Trello
           Planned movie/television watching ("Future releases", "Up and Coming", "Following", "On Hiatus", "Completed")`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '11',
@@ -201,6 +212,7 @@ export const boardMock: BoardApi = {
       title: 'Education',
       description: `Team co-ordinating a class project Sociology 101 Group Project`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '12',
@@ -209,6 +221,7 @@ export const boardMock: BoardApi = {
       title: 'Job Hunting / Career Development',
       description: `The Job Decision Matrix: How to make your next big move (CEK's Career Decision Matrix)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '13',
@@ -217,6 +230,7 @@ export const boardMock: BoardApi = {
       title: 'Recruiting',
       description: `"Recruitment Candidate tracking. As candidates move from resume, to phone screen, to 1st interview, we can see a dashboard of fulfilling open positions. We use labels to see if progress is blocked waiting on the candidate or on someone internally." - David Wihl`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '14',
@@ -225,6 +239,7 @@ export const boardMock: BoardApi = {
       title: 'Fitness / Diet / Workout planing',
       description: `"I put personal fitness goals as separate cards in sprint list (mimicing our company wide two week sprints), and move them to a done column as they are completed. I put longer term goals in a different list." - David Wihl`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '15',
@@ -233,6 +248,7 @@ export const boardMock: BoardApi = {
       title: 'Crowd Sourcing',
       description: `Khan Academy Exercises (Trello)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '16',
@@ -240,7 +256,8 @@ export const boardMock: BoardApi = {
       index: 9,
       title: 'User Templates',
       description: `See Trello`,
-      due: "2021-03-03T08:00:00.000Z",
+      due: '2021-03-03T08:00:00.000Z',
+      dueComplete: false,
     },
     {
       id: '17',
@@ -249,6 +266,7 @@ export const boardMock: BoardApi = {
       title: 'Know of other existing clients...? (Comment to let us know)',
       description: `Note: this is not a place to add a request for clients/apps for trello, but to let us know about other clients that have been built by outside developers.`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '18',
@@ -259,6 +277,7 @@ export const boardMock: BoardApi = {
   
           Get it from the Play store here: Trello: Organize anything with anyone, anywhere! - Apps on Google Play`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '19',
@@ -269,6 +288,7 @@ export const boardMock: BoardApi = {
   
           Connecting to the iTunes Store.`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '20',
@@ -277,6 +297,7 @@ export const boardMock: BoardApi = {
       title: 'Mac (Official)',
       description: `Get it here: ‎Trello`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '21',
@@ -285,6 +306,7 @@ export const boardMock: BoardApi = {
       title: 'Windows (Official)',
       description: `Get it here: Get Trello - Microsoft Store`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '22',
@@ -298,7 +320,8 @@ export const boardMock: BoardApi = {
           Scrum for Trello Chrome Extension
           Scrum for Trello Firefox Extension
           Scrum for Trello Safari extension`,
-      due: "2021-06-15T08:00:00.000Z",
+      due: '2021-06-15T08:00:00.000Z',
+      dueComplete: false,
     },
     {
       id: '23',
@@ -309,6 +332,7 @@ export const boardMock: BoardApi = {
   
           (It's pretty simple right now, it just gives you a link to open Trello on your "New Tab" page)`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '24',
@@ -328,6 +352,7 @@ export const boardMock: BoardApi = {
           
           NOTE: The dates are in ISO8601 format. Check out this post for some VBA code you can use to parse ISO8601 dates.`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '25',
@@ -338,6 +363,7 @@ export const boardMock: BoardApi = {
   
           Please note that this is a 3rd party extension that is not supported by Trello or Fog Creek Software`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '26',
@@ -354,6 +380,7 @@ export const boardMock: BoardApi = {
           
           You can also get the Harvest for Trello Chrome extension and read the blog post.`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '27',
@@ -366,6 +393,7 @@ export const boardMock: BoardApi = {
           
           keboola/trello-my-cards`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '28',
@@ -379,7 +407,8 @@ export const boardMock: BoardApi = {
           Card Numbers for Trello
           
           Note: This is a 3rd party extension that is not developed by Trello.`,
-      due: "2021-06-30T08:00:00.000Z",
+      due: '2021-06-30T08:00:00.000Z',
+      dueComplete: false,
     },
     {
       id: '29',
@@ -397,6 +426,7 @@ export const boardMock: BoardApi = {
           
           Capture for Trello Chrome Extension`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '30',
@@ -405,6 +435,7 @@ export const boardMock: BoardApi = {
       title: 'Trello Outlook Addon',
       description: `Trello Outlook Addon`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '31',
@@ -413,6 +444,7 @@ export const boardMock: BoardApi = {
       title: 'Burndown Time Estimates',
       description: `Burndown Charts for Trello`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '32',
@@ -425,6 +457,7 @@ export const boardMock: BoardApi = {
           
           If you have any questions, you can contact Wade at contact@zapier.com`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '33',
@@ -435,6 +468,7 @@ export const boardMock: BoardApi = {
   
           Corrello's dashboards and reports bring together activity from across your Trello boards.`,
       due: null,
+      dueComplete: false,
     },
     {
       id: '34',
@@ -443,6 +477,7 @@ export const boardMock: BoardApi = {
       title: 'CloudMagic',
       description: `"The email app connected to your Trello account. Emails contain tasks, you can now add it to your Trello board without leaving your email" CloudMagic`,
       due: null,
+      dueComplete: false,
     },
   ],
   labels: [],
