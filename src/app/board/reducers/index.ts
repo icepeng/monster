@@ -49,28 +49,12 @@ export const selectCardsState = createSelector(
   (state) => state.cards
 );
 
-export const selectSelectedCardId = createSelector(
-  selectCardsState,
-  fromCards.selectId
-);
-
 export const {
   selectIds: selectCardIds,
   selectEntities: selectCardEntities,
   selectAll: selectAllCards,
   selectTotal: selectTotalCards,
 } = fromCards.adapter.getSelectors(selectCardsState);
-
-export const selectSelectedCard = createSelector(
-  selectCardEntities,
-  selectSelectedCardId,
-  (entities, selectedId) => {
-    if (!selectedId) {
-      return null;
-    }
-    return entities[selectedId]!;
-  }
-);
 
 /**
  * List Entities reducer

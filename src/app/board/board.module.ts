@@ -17,6 +17,8 @@ import { CardComponent } from './containers/card.component';
 import { ListAddComponent } from './containers/list-add.component';
 import { ListComponent } from './containers/list.component';
 import { BoardEffects } from './effects/board.effects';
+import { CardEffects } from './effects/card.effects';
+import { CardPageComponent } from './containers/card-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { BoardEffects } from './effects/board.effects';
     CardAddComponent,
     CardLabelComponent,
     CardDetailComponent,
+    CardPageComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,7 @@ import { BoardEffects } from './effects/board.effects';
     PortalModule,
     BoardRoutingModule,
     StoreModule.forFeature(fromBoard.boardFeatureKey, fromBoard.reducers),
-    EffectsModule.forFeature([BoardEffects]),
+    EffectsModule.forFeature([BoardEffects, CardEffects]),
   ],
 })
 export class BoardModule {}

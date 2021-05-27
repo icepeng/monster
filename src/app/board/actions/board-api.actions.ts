@@ -64,3 +64,13 @@ export const toggleCardDueFailure = createAction(
   '[Board/API] Toggle Card Due Failure',
   props<{ error: any }>()
 );
+
+export const editCardTitleSuccess = createAction(
+  '[Board/API] Edit Card Title Success',
+  props<{ card: Card }>()
+);
+
+export const editCardTitleFailure = createAction(
+  '[Board/API] Edit Card Title Failure',
+  props<{ error: any }>()
+);

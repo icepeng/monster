@@ -2,7 +2,13 @@
   <div class="modal-header">
     <span class="modal-header-icon material-icons icon-lg">dashboard</span>
     <div class="modal-title">
-      <div class="modal-title-text">Title</div>
+      <textarea
+        #title
+        [value]="card.title"
+        (blur)="updateTitle(card.id, title.value)"
+        (keydown)="keydownTitle($event, card)"
+        class="modal-title-text"
+      ></textarea>
     </div>
     <div class="modal-header-inline quiet">in list {{ listName$ | async }}</div>
   </div>
@@ -10,7 +16,9 @@
     <div class="card-detail-data"></div>
     <div class="modal-module">
       <div class="modal-module-title description-title">
-        <span class="modal-module-title-icon material-icons icon-lg">subject</span>
+        <span class="modal-module-title-icon material-icons icon-lg"
+          >subject</span
+        >
         <h3>Description</h3>
       </div>
       <div class="gutter">
