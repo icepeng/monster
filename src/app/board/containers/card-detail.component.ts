@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromBoard from '@monster/board/reducers';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CardPageActions } from '../actions';
 import { ActivatedRoute } from '@angular/router';
+import { Card } from '../models';
 
 @Component({
   selector: 'app-card-detail',
@@ -12,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./card-detail.component.scss'],
 })
 export class CardDetailComponent implements OnInit {
+  @ViewChild('title') title!: ElementRef;
+
   card$ = combineLatest([
     this.store.select(fromBoard.selectCardEntities),
     this.route.paramMap,
@@ -29,5 +32,18 @@ export class CardDetailComponent implements OnInit {
 
   updateTitle(id: string, title: string) {
     this.store.dispatch(CardPageActions.editTitle({ id, title }));
+  }
+
+  keydownTitle(event: KeyboardEvent, card: Card) {
+    const target = event.target as HTMLElement;
+    if (event.key === 'Enter') {
+      target.blur();
+      return;
+    }
+    if (event.key === 'Escape') {
+      this.title.nativeElement.value = card.title;
+      target.blur();
+      return;
+    }
   }
 }

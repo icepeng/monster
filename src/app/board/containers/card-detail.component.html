@@ -6,12 +6,7 @@
         #title
         [value]="card.title"
         (blur)="updateTitle(card.id, title.value)"
-        (keydown.enter)="updateTitle(card.id, title.value); $event.target.blur();"
-        (keydown.control.enter)="updateTitle(card.id, title.value); $event.target.blur();"
-        (keydown.shift.enter)="updateTitle(card.id, title.value); $event.target.blur();"
-        (keydown.alt.enter)="updateTitle(card.id, title.value); $event.target.blur();"
-        (keydown.meta.enter)="updateTitle(card.id, title.value); $event.target.blur();"
-        (keydown.escape)="title.value = card.title; $event.target.blur();"
+        (keydown)="keydownTitle($event, card)"
         class="modal-title-text"
       ></textarea>
     </div>
