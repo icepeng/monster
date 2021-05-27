@@ -1,4 +1,4 @@
-import { BoardApiActions } from '@monster/board/actions';
+import { BoardApiActions, BoardPageActions } from '@monster/board/actions';
 import { Card } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
@@ -30,17 +30,24 @@ export const reducer = createReducer(
     adapter.upsertMany(cards, state)
   ),
   on(BoardApiActions.toggleCardDueSuccess, (state, { card }) =>
-    adapter.updateOne({
-      id: card.id,
-      changes: {
-        dueComplete: card.dueComplete,
-      }
-    }, state)
-  )
-  // on(ViewCardPageActions.selectCard, (state, { id }) => ({
-  //   ...state,
-  //   selectedCardId: id,
-  // }))
+    adapter.updateOne(
+      {
+        id: card.id,
+        changes: {
+          dueComplete: card.dueComplete,
+        },
+      },
+      state
+    )
+  ),
+  on(BoardPageActions.selectCard, (state, { cardId }) => ({
+    ...state,
+    selectedCardId: cardId,
+  })),
+  on(BoardPageActions.unselectCard, (state) => ({
+    ...state,
+    selectedCardId: null,
+  }))
 );
 
 export const selectId = (state: State) => state.selectedCardId;
