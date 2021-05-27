@@ -1,22 +1,18 @@
-import { BoardApiActions, BoardPageActions } from '@monster/board/actions';
+import { BoardApiActions } from '@monster/board/actions';
 import { Card } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
 export const cardsFeatureKey = 'cards';
 
-export interface State extends EntityState<Card> {
-  selectedCardId: string | null;
-}
+export interface State extends EntityState<Card> {}
 
 export const adapter: EntityAdapter<Card> = createEntityAdapter<Card>({
   selectId: (card: Card) => card.id,
   sortComparer: false,
 });
 
-export const initialState: State = adapter.getInitialState({
-  selectedCardId: null,
-});
+export const initialState: State = adapter.getInitialState();
 
 export const reducer = createReducer(
   initialState,
@@ -40,14 +36,15 @@ export const reducer = createReducer(
       state
     )
   ),
-  on(BoardPageActions.selectCard, (state, { cardId }) => ({
-    ...state,
-    selectedCardId: cardId,
-  })),
-  on(BoardPageActions.unselectCard, (state) => ({
-    ...state,
-    selectedCardId: null,
-  }))
+  on(BoardApiActions.editCardTitleSuccess, (state, { card }) =>
+    adapter.updateOne(
+      {
+        id: card.id,
+        changes: {
+          title: card.title,
+        },
+      },
+      state
+    )
+  )
 );
-
-export const selectId = (state: State) => state.selectedCardId;

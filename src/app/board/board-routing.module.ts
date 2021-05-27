@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardPageComponent } from './containers/board-page.component';
+import { CardPageComponent } from './containers/card-page.component';
 
 export const routes: Routes = [
   {
-    path: ':id',
+    path: ':boardId',
     component: BoardPageComponent,
-    // canActivate: [BookExistsGuard],
+    children: [
+      {
+        path: ':cardId',
+        component: CardPageComponent,
+      },
+    ],
   },
-  // {
-  //   path: '',
-  //   component: CollectionPageComponent,
-  //   data: { title: 'Collection' },
-  // },
 ];
 
 @NgModule({

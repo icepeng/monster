@@ -92,7 +92,9 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardApiService.toggleCardDue(action.cardId).pipe(
           map((card: Card) => BoardApiActions.toggleCardDueSuccess({ card })),
-          catchError((error) => of(BoardApiActions.toggleCardDueFailure({ error })))
+          catchError((error) =>
+            of(BoardApiActions.toggleCardDueFailure({ error }))
+          )
         )
       )
     )
