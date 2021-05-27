@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { BoardRoutingModule } from './board-routing.module';
 import { CardLabelComponent } from './components/card-label.component';
+import { AddCommentComponent } from './containers/add-comment.component';
 import { BoardPageComponent } from './containers/board-page.component';
 import { CardAddComponent } from './containers/card-add.component';
 import { CardDetailComponent } from './containers/card-detail.component';
@@ -19,6 +20,8 @@ import { ListComponent } from './containers/list.component';
 import { BoardEffects } from './effects/board.effects';
 import { CardEffects } from './effects/card.effects';
 import { CardPageComponent } from './containers/card-page.component';
+import { CommentComponent } from './components/comment.component';
+import { AutoResizeDirective } from './auto-resize.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { CardPageComponent } from './containers/card-page.component';
     CardLabelComponent,
     CardDetailComponent,
     CardPageComponent,
+    AddCommentComponent,
+    CommentComponent,
+    AutoResizeDirective,
   ],
   imports: [
     CommonModule,

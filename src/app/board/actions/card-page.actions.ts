@@ -4,3 +4,8 @@ export const editTitle = createAction(
   '[Card Page] Edit title',
   props<{ id: string, title: string }>()
 );
+
+export const addComment = createAction(
+  '[Card Page] Add Comment',
+  props<{ cardId: string, content: string }>()
+);

@@ -3,9 +3,9 @@ import * as fromBoard from '@monster/board/reducers';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { Card, List } from '../models';
+import { Card, Comment, List } from '../models';
 import { BoardApi } from '../models/board-api';
-import { boardMock } from './mock';
+import { boardMock, generateId } from './mock';
 import { moveItemIndex, transferArrayItem } from './util';
 
 @Injectable({
@@ -22,9 +22,7 @@ export class BoardApiService {
     return this.store.select(fromBoard.selectListIds).pipe(
       take(1),
       map((ids) => ({
-        id: [...Array(32)]
-          .map(() => Math.floor(Math.random() * 16).toString(16))
-          .join(''),
+        id: generateId(),
         index: ids.length,
         boardId: boardId,
         title: title,
@@ -48,9 +46,7 @@ export class BoardApiService {
     return this.store.select(fromBoard.selectCardIds).pipe(
       take(1),
       map((ids) => ({
-        id: [...Array(32)]
-          .map(() => Math.floor(Math.random() * 16).toString(16))
-          .join(''),
+        id: generateId(),
         listId: listId,
         index: ids.length,
         title: title,
@@ -111,5 +107,13 @@ export class BoardApiService {
         };
       })
     );
+  }
+
+  addComment(cardId: string, content: string): Observable<Comment> {
+    return of({
+      id: generateId(),
+      cardId: cardId,
+      content: content,
+    })
   }
 }

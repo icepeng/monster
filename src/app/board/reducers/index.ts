@@ -1,5 +1,6 @@
 import * as fromBoard from '@monster/board/reducers/board.reducer';
 import * as fromCards from '@monster/board/reducers/cards.reducer';
+import * as fromComments from '@monster/board/reducers/comments.reducer';
 import * as fromLists from '@monster/board/reducers/lists.reducer';
 import * as fromLabels from '@monster/board/reducers/labels.reducer';
 import * as fromCardLabels from '@monster/board/reducers/card-labels.reducer';
@@ -16,6 +17,7 @@ export const boardFeatureKey = 'board';
 
 export interface BoardFeatureState {
   [fromCards.cardsFeatureKey]: fromCards.State;
+  [fromComments.commentsFeatureKey]: fromComments.State;
   [fromLists.listsFeatureKey]: fromLists.State;
   [fromLabels.labelsFeatureKey]: fromLabels.State;
   [fromCardLabels.cardLabelsFeatureKey]: fromCardLabels.State;
@@ -30,6 +32,7 @@ export interface State extends fromRoot.State {
 export function reducers(state: BoardFeatureState | undefined, action: Action) {
   return combineReducers({
     [fromCards.cardsFeatureKey]: fromCards.reducer,
+    [fromComments.commentsFeatureKey]: fromComments.reducer,
     [fromLists.listsFeatureKey]: fromLists.reducer,
     [fromLabels.labelsFeatureKey]: fromLabels.reducer,
     [fromCardLabels.cardLabelsFeatureKey]: fromCardLabels.reducer,
@@ -100,6 +103,21 @@ export const {
   selectAll: selectAllCardLabels,
   selectTotal: selectTotalCardLabels,
 } = fromCardLabels.adapter.getSelectors(selectCardLabelsState);
+
+/**
+ * Comment Entities reducer
+ */
+export const selectCommentsState = createSelector(
+  selectBoardFeatureState,
+  (state) => state.comments
+);
+
+export const {
+  selectIds: selectCommentIds,
+  selectEntities: selectCommentEntities,
+  selectAll: selectAllComments,
+  selectTotal: selectTotalComments,
+} = fromComments.adapter.getSelectors(selectCommentsState);
 
 /**
  * Board reducer

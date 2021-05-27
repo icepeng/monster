@@ -7,6 +7,13 @@
   min-height: 600px;
 }
 
+@media only screen and (max-width: 750px) {
+  .modal {
+    margin: 36px 8px;
+    width: auto;
+  }
+}
+
 .modal-header {
   margin: 12px 40px 8px 56px;
   min-height: 32px;
@@ -27,6 +34,7 @@
 .modal-title-text {
   background: transparent;
   border-radius: 3px;
+  box-sizing: initial;
   box-shadow: none;
   font-size: 20px;
   font-weight: 600;
@@ -58,6 +66,17 @@
   padding: 0 8px 8px 16px;
   position: relative;
   width: 552px;
+}
+
+@media only screen and (max-width: 750px) {
+  .modal-main-col {
+    float: none;
+    max-height: none;
+    padding: 8px;
+    max-width: none;
+    min-width: 0;
+    width: auto;
+  }
 }
 
 .modal-module {
@@ -102,4 +121,61 @@
 
 .description-content {
   position: relative;
+}
+
+.card-detail-activity {
+  justify-content: space-between;
+}
+
+.card-detail-activity,
+.card-detail-description {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.card-detail-activity .button.subtle,
+.card-detail-description .button.subtle {
+  margin: 0 0 0 8px;
+}
+
+.card-detail-activity .modal-module-title-icon,
+.card-detail-description .modal-module-title-icon {
+  top: 8px;
+}
+
+.button {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  border: none;
+  display: inline-block;
+  line-height: 20px;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  text-decoration: none;
+  position: relative;
+}
+
+.button {
+  background-color: rgba(9, 30, 66, 0.04);
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 8px 4px 0 0;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: rgba(9, 30, 66, 0.08);
+  box-shadow: none;
+  border: none;
+}
+
+a {
+  color: #172b4d;
 }

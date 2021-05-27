@@ -1,5 +1,10 @@
 import { BoardApi } from '../models/board-api';
 
+export const generateId = () =>
+  [...Array(32)]
+    .map(() => Math.floor(Math.random() * 16).toString(16))
+    .join('');
+
 export const boardMock: BoardApi = {
   board: {
     id: '0',
@@ -511,5 +516,31 @@ export const boardMock: BoardApi = {
       labelId: '0',
     },
   ],
-  comments: [],
+  comments: [
+    {
+      id: '0',
+      cardId: '0',
+      content: 'Thank you',
+    },
+    {
+      id: '1',
+      cardId: '0',
+      content: 'Thank you',
+    },
+    {
+      id: '2',
+      cardId: '0',
+      content: 'Thank you',
+    },
+    {
+      id: '3',
+      cardId: '0',
+      content: 'Thank you',
+    },
+    {
+      id: '4',
+      cardId: '0',
+      content: 'Thank you',
+    },
+  ],
 };

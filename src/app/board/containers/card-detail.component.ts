@@ -21,10 +21,20 @@ export class CardDetailComponent implements OnInit {
   ]).pipe(
     map(([cardEntities, paramMap]) => cardEntities[paramMap.get('cardId')!])
   );
+
   listName$ = combineLatest([
     this.card$,
     this.store.select(fromBoard.selectListEntities),
   ]).pipe(map(([card, listEntities]) => listEntities[card!.listId]!.title));
+
+  comments$ = combineLatest([
+    this.card$,
+    this.store.select(fromBoard.selectAllComments),
+  ]).pipe(
+    map(([card, comments]) =>
+      comments.filter((comment) => comment.cardId === card!.id)
+    )
+  );
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
