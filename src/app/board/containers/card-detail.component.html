@@ -6,7 +6,7 @@
         #title
         appAutoResize
         [value]="card.title"
-        (blur)="updateTitle(card.id, title.value)"
+        (blur)="updateTitle(card, title.value)"
         (keydown)="keydownTitle($event, card)"
         class="modal-title-text"
       ></textarea>

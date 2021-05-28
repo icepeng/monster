@@ -40,8 +40,11 @@ export class CardDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  updateTitle(id: string, title: string) {
-    this.store.dispatch(CardPageActions.editTitle({ id, title }));
+  updateTitle(card: Card, title: string) {
+    if (card.title === title) {
+      return;
+    }
+    this.store.dispatch(CardPageActions.editTitle({ id: card.id, title }));
   }
 
   keydownTitle(event: KeyboardEvent, card: Card) {
