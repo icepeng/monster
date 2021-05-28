@@ -1,7 +1,8 @@
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { CardDetailComponent } from './card-detail.component';
 
@@ -10,7 +11,9 @@ import { CardDetailComponent } from './card-detail.component';
   templateUrl: './card-page.component.html',
   styleUrls: ['./card-page.component.scss'],
 })
-export class CardPageComponent implements OnInit {
+export class CardPageComponent implements OnInit, OnDestroy {
+  subscription$!: Subscription;
+
   constructor(
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
@@ -22,8 +25,7 @@ export class CardPageComponent implements OnInit {
     const positionStrategy = this.overlay
       .position()
       .global()
-      .centerHorizontally()
-      .centerVertically();
+      .centerHorizontally();
 
     const configs = new OverlayConfig({
       hasBackdrop: true,
@@ -31,7 +33,7 @@ export class CardPageComponent implements OnInit {
       positionStrategy,
     });
 
-    this.route.paramMap
+    this.subscription$ = this.route.paramMap
       .pipe(
         map((params) => params.get('cardId')),
         filter((id) => !!id),
@@ -42,7 +44,8 @@ export class CardPageComponent implements OnInit {
           )
         ),
         switchMap((overlayRef) =>
-          overlayRef.backdropClick().pipe(
+          overlayRef.outsidePointerEvents().pipe(
+            filter((e) => e.type === 'click'),
             take(1),
             tap(() => {
               overlayRef.dispose();
@@ -52,5 +55,9 @@ export class CardPageComponent implements OnInit {
         )
       )
       .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 }
