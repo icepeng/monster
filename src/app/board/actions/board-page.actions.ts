@@ -35,3 +35,8 @@ export const toggleCardDue = createAction(
 export const toggleLabelExpand = createAction(
   '[Board Page] Toggle Label Expand'
 );
+
+export const editListTitle = createAction(
+  '[Board Page] Edit List Title',
+  props<{ listId: string; title: string }>()
+);

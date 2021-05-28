@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as fromBoard from '@monster/board/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { List } from '../models';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
+  @ViewChild('title') titleEl!: ElementRef;
   @Input() id!: string;
   data$!: Observable<List>;
   cardIds$!: Observable<string[]>;
@@ -43,5 +44,35 @@ export class ListComponent implements OnInit {
         currentIndex: event.currentIndex,
       })
     );
+  }
+
+  focusTitle() {
+    this.titleEl.nativeElement.focus();
+  }
+
+  onTitleFocus() {
+    this.titleEl.nativeElement.select();
+  }
+
+  updateTitle(list: List, title: string) {
+    if (list.title === title) {
+      return;
+    }
+    this.store.dispatch(
+      BoardPageActions.editListTitle({ listId: list.id, title })
+    );
+  }
+
+  keydownTitle(event: KeyboardEvent, list: List) {
+    const target = event.target as HTMLElement;
+    if (event.key === 'Enter') {
+      target.blur();
+      return;
+    }
+    if (event.key === 'Escape') {
+      this.titleEl.nativeElement.value = list.title;
+      target.blur();
+      return;
+    }
   }
 }

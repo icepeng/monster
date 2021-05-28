@@ -53,6 +53,20 @@ export class BoardEffects {
     )
   );
 
+  editListTitle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.editListTitle),
+      switchMap((action) =>
+        this.boardApiService.editListTitle(action.listId, action.title).pipe(
+          map((list: List) => BoardApiActions.editListTitleSuccess({ list })),
+          catchError((error) =>
+            of(BoardApiActions.editListTitleFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   addCard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.addCard),
