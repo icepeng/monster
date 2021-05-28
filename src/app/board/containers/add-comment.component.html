@@ -1,0 +1,42 @@
+<div
+  #wrapper
+  class="new-comment"
+  [ngClass]="{
+    'is-focused': isFocused,
+    'is-show-controls': !!content.value
+  }"
+>
+  <div class="member member-no-menu">
+    <span
+      class="member-initials"
+      title="Ahn Seonghyun (ahnseonghyun)"
+      aria-label="Ahn Seonghyun (ahnseonghyun)"
+      >AS</span
+    >
+  </div>
+  <div
+    class="comment-frame"
+    (click)="focus(); $event.stopPropagation()"
+    (document:click)="blur()"
+  >
+    <div class="comment-box">
+      <textarea
+        appAutoResize
+        [formControl]="content"
+        class="comment-box-input"
+        placeholder="Write a comment…"
+        (focus)="focus()"
+        (keydown.control.enter)="addComment()"
+      ></textarea>
+      <div class="comment-controls">
+        <button
+          (click)="addComment(); $event.stopPropagation()"
+          class="btn btn-primary"
+          type="button"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

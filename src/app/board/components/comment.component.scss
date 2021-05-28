@@ -1,0 +1,52 @@
+.activity {
+  margin-left: 40px;
+  min-height: 32px;
+  padding: 8px 0;
+  position: relative;
+}
+
+.activity-creator,
+.activity-icon {
+  height: 32px;
+  left: -40px;
+  position: absolute;
+  top: 8px;
+  width: 32px;
+}
+
+.activity-desc {
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.activity-date {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: pre;
+}
+
+.comment-container {
+  display: block;
+}
+
+.action-comment {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px -1px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+  box-sizing: border-box;
+  clear: both;
+  display: inline-block;
+  margin: 4px 2px 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.action-comment .current-comment {
+  padding: 8px 12px;
+}
+
+.inline-spacer {
+  display: inline-block;
+  min-width: 8px;
+}

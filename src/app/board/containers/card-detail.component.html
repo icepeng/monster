@@ -4,6 +4,7 @@
     <div class="modal-title">
       <textarea
         #title
+        appAutoResize
         [value]="card.title"
         (blur)="updateTitle(card.id, title.value)"
         (keydown)="keydownTitle($event, card)"
@@ -26,6 +27,25 @@
           {{ card.description }}
         </div>
       </div>
+    </div>
+    <div class="modal-module">
+      <div class="modal-module-title card-detail-activity">
+        <span
+          class="
+            modal-module-title-icon
+            modal-header-icon
+            material-icons
+            icon-lg
+          "
+          >toc</span
+        >
+        <h3>Activity</h3>
+        <div class="modal-module-title-options">
+          <a class="subtle button" href="#">Show details</a>
+        </div>
+      </div>
+      <app-add-comment></app-add-comment>
+      <app-comment *ngFor="let comment of comments$ | async" [data]="comment"></app-comment>
     </div>
   </div>
 </div>
