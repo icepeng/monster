@@ -18,7 +18,11 @@
       <div *ngIf="showLabels$ | async" class="card-detail-item">
         <div class="card-detail-item-header">Labels</div>
         <div>
-          <app-card-label *ngFor="let label of labels$ | async" [label]="label" type="detail"></app-card-label>
+          <app-card-label
+            *ngFor="let label of labels$ | async"
+            [label]="label"
+            type="detail"
+          ></app-card-label>
         </div>
       </div>
     </div>
@@ -31,7 +35,7 @@
       </div>
       <div class="gutter">
         <div class="description-content">
-          {{ card.description }}
+          <div class="markeddown" [innerHTML]="card.description | marked"></div>
         </div>
       </div>
     </div>

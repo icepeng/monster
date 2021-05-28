@@ -122,6 +122,35 @@ h6 {
   margin: 0 0 8px;
 }
 
+p {
+  margin: 0 0 8px;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.markeddown ol,
+.markeddown ul {
+  margin: 8px 0;
+}
+
+.markeddown ol > li,
+.markeddown ul > li {
+  margin: 8px 8px 8px 24px;
+  -webkit-margin-start: 24px;
+  margin-inline-start: 24px;
+  -webkit-margin-end: 8px;
+  margin-inline-end: 8px;
+}
+
+.markeddown ul > li {
+  list-style: disc;
+}
+
 body,
 button,
 html,
@@ -129,7 +158,8 @@ input,
 select,
 textarea {
   color: #172b4d;
-  font-family: Roboto, Noto Sans KR, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+    Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;

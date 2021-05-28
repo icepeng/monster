@@ -22,6 +22,7 @@ import { CardEffects } from './effects/card.effects';
 import { CardPageComponent } from './containers/card-page.component';
 import { CommentComponent } from './components/comment.component';
 import { AutoResizeDirective } from './auto-resize.directive';
+import { MarkedPipe } from './marked.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AutoResizeDirective } from './auto-resize.directive';
     AddCommentComponent,
     CommentComponent,
     AutoResizeDirective,
+    MarkedPipe,
   ],
   imports: [
     CommonModule,

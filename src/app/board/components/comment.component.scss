@@ -46,6 +46,17 @@
   padding: 8px 12px;
 }
 
+.action-comment img:last-child,
+.action-comment p:last-child,
+.action-comment pre:last-child {
+  margin-bottom: 0;
+}
+
+.action-comment p {
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
 .inline-spacer {
   display: inline-block;
   min-width: 8px;

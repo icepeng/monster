@@ -50,14 +50,15 @@ export const boardMock: BoardApi = {
       title: 'Use the keyboard shortcuts',
       description: `You can do things like
   
-          See all the shortcuts [?]
-          Assign (or remove) yourself from a card by hitting [spacebar]
-          Add/remove labels from cards [1-6]
-          Archive cards [c]
-          Open the "Boards" menu [b]
-          Vote [v] (great for public boards like this one ... try pressing the 'v' key now)
-          etc
-          Often, you can just hover over a card in a list with your mouse and then use a keyboard shortcut. (Which can make it easy to add labels/members/etc to cards without needing to open them)`,
+* See all the shortcuts [?]
+* Assign (or remove) yourself from a card by hitting [spacebar]
+* Add/remove labels from cards [1-6]
+* Archive cards [c]
+* Open the "Boards" menu [b]
+* Vote [v] (great for public boards like this one ... try pressing the 'v' key now)
+* etc
+
+Often, you can just hover over a card in a list with your mouse and then use a keyboard shortcut. (Which can make it easy to add labels/members/etc to cards without needing to open them)`,
       due: null,
       dueComplete: false,
     },
