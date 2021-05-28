@@ -36,6 +36,20 @@ export class CardDetailComponent implements OnInit {
     )
   );
 
+  labels$ = combineLatest([
+    this.store.select(fromBoard.selectAllCardLabels),
+    this.store.select(fromBoard.selectLabelEntities),
+    this.card$,
+  ]).pipe(
+    map(([cardLabels, labelEntities, card]) =>
+      cardLabels
+        .filter((x) => x.cardId === card!.id)
+        .map((x) => labelEntities[x.labelId]!)
+    )
+  );
+
+  showLabels$ = this.labels$.pipe(map((labels) => labels.length > 0));
+
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}

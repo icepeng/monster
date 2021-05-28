@@ -26,12 +26,34 @@
     width: auto;
     transition: margin 45ms ease-in, height 45ms ease-out;
 
+    .label-text {
+      display: none;
+    }
+
     &.expand {
       height: 16px;
       line-height: 16px;
       padding: 0 8px;
       max-width: 198px;
       transition: margin 45ms ease-in, height 45ms ease-out;
+
+      .label-text {
+        display: initial;
+      }
     }
+  }
+
+  &.card-label-detail {
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 4px 4px 0;
+    min-width: 40px;
+    padding: 0 12px;
+    width: auto;
   }
 }
