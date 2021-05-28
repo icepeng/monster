@@ -6,8 +6,16 @@
 >
   <div class="list">
     <div class="list-header">
-      <div cdkDragHandle class="list-target"></div>
-      <div class="list-header-name">{{ data.title }}</div>
+      <div (click)="focusTitle()" cdkDragHandle class="list-target"></div>
+      <textarea
+        #title
+        appAutoResize
+        class="list-header-name"
+        [value]="data.title"
+        (focus)="onTitleFocus()"
+        (blur)="updateTitle(data, title.value)"
+        (keydown)="keydownTitle($event, data)"
+      ></textarea>
     </div>
     <div class="list-cards">
       <div

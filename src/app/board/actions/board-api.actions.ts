@@ -25,6 +25,16 @@ export const addListFailure = createAction(
   props<{ error: any }>()
 );
 
+export const editListTitleSuccess = createAction(
+  '[Board/API] Edit List Title Success',
+  props<{ list: List }>()
+);
+
+export const editListTitleFailure = createAction(
+  '[Board/API] Edit List Title Failure',
+  props<{ error: any }>()
+);
+
 export const addCardSuccess = createAction(
   '[Board/API] Add Card Success',
   props<{ card: Card }>()

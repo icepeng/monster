@@ -24,5 +24,16 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.moveListSuccess, (state, { lists }) =>
     adapter.upsertMany(lists, state)
+  ),
+  on(BoardApiActions.editListTitleSuccess, (state, { list }) =>
+    adapter.updateOne(
+      {
+        id: list.id,
+        changes: {
+          title: list.title,
+        },
+      },
+      state
+    )
   )
 );

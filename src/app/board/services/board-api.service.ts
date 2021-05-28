@@ -42,6 +42,18 @@ export class BoardApiService {
     );
   }
 
+  editListTitle(listId: string, title: string): Observable<List> {
+    return this.store.select(fromBoard.selectListEntities).pipe(
+      take(1),
+      map((lists) => {
+        return {
+          ...lists[listId]!,
+          title,
+        };
+      })
+    );
+  }
+
   addCard(listId: string, title: string): Observable<Card> {
     return this.store.select(fromBoard.selectCardIds).pipe(
       take(1),
@@ -114,6 +126,6 @@ export class BoardApiService {
       id: generateId(),
       cardId: cardId,
       content: content,
-    })
+    });
   }
 }
