@@ -1,5 +1,10 @@
 <span
-  class="card-label card-label-front"
-  [ngClass]="{ expand: expand }"
+  class="card-label"
+  [ngClass]="{
+    expand: expand,
+    'card-label-front': type === 'front',
+    'card-label-detail': type === 'detail'
+  }"
   [ngStyle]="{ 'background-color': label.color }"
-><span *ngIf="expand">{{ label.title }}</span></span>
+  ><span class="label-text">{{ label.title }}</span></span
+>

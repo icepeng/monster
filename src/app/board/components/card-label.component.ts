@@ -9,6 +9,7 @@ import { Label } from '../models';
 export class CardLabelComponent implements OnInit {
   @Input() label!: Label;
   @Input() expand!: boolean | null;
+  @Input() type!: 'front' | 'detail';
 
   constructor() {}
 

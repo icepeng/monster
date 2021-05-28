@@ -14,7 +14,14 @@
     <div class="modal-header-inline quiet">in list {{ listName$ | async }}</div>
   </div>
   <div class="modal-main-col">
-    <div class="card-detail-data"></div>
+    <div class="card-detail-data gutter">
+      <div *ngIf="showLabels$ | async" class="card-detail-item">
+        <div class="card-detail-item-header">Labels</div>
+        <div>
+          <app-card-label *ngFor="let label of labels$ | async" [label]="label" type="detail"></app-card-label>
+        </div>
+      </div>
+    </div>
     <div class="modal-module">
       <div class="modal-module-title description-title">
         <span class="modal-module-title-icon material-icons icon-lg"
@@ -32,8 +39,7 @@
       <div class="modal-module-title card-detail-activity">
         <span
           class="
-            modal-module-title-icon
-            modal-header-icon
+            modal-module-title-icon modal-header-icon
             material-icons
             icon-lg
           "
@@ -45,7 +51,10 @@
         </div>
       </div>
       <app-add-comment></app-add-comment>
-      <app-comment *ngFor="let comment of comments$ | async" [data]="comment"></app-comment>
+      <app-comment
+        *ngFor="let comment of comments$ | async"
+        [data]="comment"
+      ></app-comment>
     </div>
   </div>
 </div>

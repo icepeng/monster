@@ -2,10 +2,11 @@
   <div class="card-details">
     <div class="card-labels">
       <app-card-label
-        (click)="toggleLabelExpand(); $event.stopPropagation();"
+        (click)="toggleLabelExpand(); $event.stopPropagation()"
         *ngFor="let label of labels$ | async"
         [label]="label"
         [expand]="labelExpand$ | async"
+        type="front"
       ></app-card-label>
     </div>
     <div class="card-title">{{ data.title }}</div>
@@ -14,14 +15,22 @@
         *ngIf="data.due"
         class="badge js-due-date-badge mod-due-date"
         [ngClass]="getDueClass(data)"
-        (click)="toggleDue(data); $event.stopPropagation();"
+        (click)="toggleDue(data); $event.stopPropagation()"
         (mouseenter)="dueMouseEnter($event)"
         (mouseleave)="dueMouseLeave($event)"
         title="This card is complete."
       >
         <span *ngIf="!dueHover" class="icon-sm material-icons">schedule</span>
-        <span *ngIf="dueHover && data.dueComplete" class="icon-sm material-icons-outlined">check_box</span>
-        <span *ngIf="dueHover && !data.dueComplete" class="icon-sm material-icons-outlined">check_box_outline_blank</span>
+        <span
+          *ngIf="dueHover && data.dueComplete"
+          class="icon-sm material-icons-outlined"
+          >check_box</span
+        >
+        <span
+          *ngIf="dueHover && !data.dueComplete"
+          class="icon-sm material-icons-outlined"
+          >check_box_outline_blank</span
+        >
         <span class="badge-text js-due-date-text">{{
           data.due | date: "MMM d, y"
         }}</span>
