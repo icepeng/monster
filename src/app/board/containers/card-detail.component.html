@@ -48,7 +48,7 @@
               </svg>
             </span>
           </button>
-          <div class="btn" [ngSwitch]="showDueYear$ | async">
+          <button class="btn" [ngSwitch]="showDueYear$ | async">
             <span *ngSwitchCase="true">
               {{ card.due | date: "MMM d, y 'at' h:mm a" }}
             </span>
@@ -56,7 +56,7 @@
               {{ card.due | date: "MMM d 'at' h:mm a" }}
             </span>
             <span class="material-icons icon-sm">expand_more</span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
         >
         <h3>Activity</h3>
         <div class="modal-module-title-options">
-          <a class="subtle btn">Show details</a>
+          <button class="subtle btn">Show details</button>
         </div>
       </div>
       <app-add-comment></app-add-comment>
