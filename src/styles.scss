@@ -244,6 +244,13 @@ textarea {
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 85ms;
   transition-timing-function: ease;
+  &:hover {
+    background-color: rgba(9,30,66,.08);
+  }
+  &:active {
+    color: #0079bf;
+    background-color: #e4f0f6;
+  }
 }
 
 .btn.btn-primary {
