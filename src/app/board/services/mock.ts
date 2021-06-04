@@ -59,7 +59,7 @@ export const boardMock: BoardApi = {
 * etc
 
 Often, you can just hover over a card in a list with your mouse and then use a keyboard shortcut. (Which can make it easy to add labels/members/etc to cards without needing to open them)`,
-      due: null,
+      due: '2021-06-30T08:00:00.000Z',
       dueComplete: false,
     },
     {
