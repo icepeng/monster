@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromBoard from '@monster/board/reducers';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CardPageActions } from '../actions';
+import { BoardPageActions, CardPageActions } from '../actions';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from '../models';
 
@@ -49,6 +49,14 @@ export class CardDetailComponent implements OnInit {
   );
 
   showLabels$ = this.labels$.pipe(map((labels) => labels.length > 0));
+  showDue$ = this.card$.pipe(map((card) => !!card!.due));
+  showDueYear$ = this.card$.pipe(
+    map(
+      (card) =>
+        !!card!.due &&
+        new Date().getFullYear() !== new Date(card!.due!).getFullYear()
+    )
+  );
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
@@ -72,5 +80,13 @@ export class CardDetailComponent implements OnInit {
       target.blur();
       return;
     }
+  }
+
+  toggleDue(card: Card) {
+    this.store.dispatch(
+      BoardPageActions.toggleCardDue({
+        cardId: card.id,
+      })
+    );
   }
 }
