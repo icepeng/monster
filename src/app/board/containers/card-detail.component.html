@@ -84,14 +84,12 @@
           >toc</span
         >
         <h3>Activity</h3>
-        <div class="modal-module-title-options">
-          <button class="subtle btn">Show details</button>
-        </div>
       </div>
       <app-add-comment></app-add-comment>
       <app-comment
         *ngFor="let comment of comments$ | async"
         [data]="comment"
+        (edit)="editComment($event)"
         (delete)="deleteComment($event)"
       ></app-comment>
     </div>

@@ -14,14 +14,35 @@
     <span class="inline-spacer"> </span>
     <span class="activity-date quiet">an hour ago</span>
     <div class="comment-container">
-      <div class="action-comment markeddown">
+      <div *ngIf="!isEdit" class="action-comment markeddown">
         <div class="current-comment" [innerHTML]="data.content | marked"></div>
+      </div>
+      <div *ngIf="isEdit" class="comment-frame">
+        <div class="comment-box-form">
+          <textarea
+          #form
+          appAutoResize
+          [value]="data.content"
+          class="comment-box-input"
+          (keydown.escape)="blurEdit()"
+          (keydown.control.enter)="editComment(form.value)"
+          ></textarea>
+          <div class="comment-controls">
+            <button
+              (click)="editComment(form.value)"
+              class="btn btn-primary"
+              type="button"
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="activity-reaction">
+  <div *ngIf="!isEdit" class="activity-reaction">
     <div class="action-meta">
-      <span (click)="deleteComment()">Delete</span>
+      <span (click)="focusEdit()">Edit</span> - <span (click)="deleteComment()">Delete</span>
     </div>
   </div>
 </div>

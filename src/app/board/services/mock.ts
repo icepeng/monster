@@ -403,7 +403,7 @@ Corrello's dashboards and reports bring together activity from across your Trell
     {
       id: '0',
       cardId: '0',
-      content: 'Thank you1',
+      content: 'Run ng generate component component-name to generate a new component. You can also use ng generate directive|pipe|service|class|guard|interface|enum|module.',
     },
     {
       id: '1',

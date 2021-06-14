@@ -129,6 +129,18 @@ export class BoardApiService {
     });
   }
 
+  editComment(id: string, content: string): Observable<Comment> {
+    return this.store.select(fromBoard.selectCommentEntities).pipe(
+      take(1),
+      map((comments) => {
+        return {
+          ...comments[id]!,
+          content,
+        };
+      })
+    );
+  }
+
   deleteComment(id: string): Observable<string> {
     return of(id);
   }

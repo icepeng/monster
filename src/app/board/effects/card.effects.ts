@@ -38,6 +38,22 @@ export class CardEffects {
     )
   );
 
+  editComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CardPageActions.editComment),
+      switchMap((action) =>
+        this.boardApiService.editComment(action.id, action.content).pipe(
+          map((comment: Comment) =>
+            BoardApiActions.editCommentSuccess({ comment })
+          ),
+          catchError((error) =>
+            of(BoardApiActions.editCommentFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   deleteComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CardPageActions.deleteComment),

@@ -22,6 +22,16 @@ export const reducer = createReducer(
   on(BoardApiActions.addCommentSuccess, (state, { comment }) =>
     adapter.addOne(comment, state)
   ),
+  on(BoardApiActions.editCommentSuccess, (state, { comment }) =>
+    adapter.updateOne(
+      {
+        id: comment.id,
+        changes: {
+          content: comment.content,
+        },
+      },
+      state)
+  ),
   on(BoardApiActions.deleteCommentSuccess, (state, { id }) =>
     adapter.removeOne(id, state)
   ),
