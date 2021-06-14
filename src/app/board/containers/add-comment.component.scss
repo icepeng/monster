@@ -21,7 +21,8 @@
 }
 
 .new-comment.is-focused:not(.is-show-controls) .comment-box,
-.new-comment.is-show-controls .comment-box {
+.new-comment.is-show-controls .comment-box,
+.comment-frame .comment-box-form {
   padding-bottom: 56px;
 }
 
@@ -39,7 +40,8 @@
   box-shadow: 0 4px 8px -2px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
 }
 
-.comment-box {
+.comment-box,
+.comment-box-form {
   padding: 8px 12px;
   position: relative;
   transition-duration: 85ms;
@@ -55,7 +57,8 @@ textarea {
 .new-comment.is-focused:not(.is-show-controls) .comment-box-options,
 .new-comment.is-focused:not(.is-show-controls) .comment-controls,
 .new-comment.is-show-controls .comment-box-options,
-.new-comment.is-show-controls .comment-controls {
+.new-comment.is-show-controls .comment-controls,
+.comment-box-form .comment-controls {
   opacity: 1;
   transform: translateY(0);
 }
@@ -70,6 +73,10 @@ textarea {
   padding: 0;
   width: 100%;
   resize: none;
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .comment-controls {

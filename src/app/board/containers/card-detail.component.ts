@@ -90,6 +90,10 @@ export class CardDetailComponent implements OnInit {
     );
   }
   
+  editComment(form: {id: string, content: string}) {
+    this.store.dispatch(CardPageActions.editComment({ id: form.id, content:form.content }));
+  }
+
   deleteComment(id: string) {
     this.store.dispatch(CardPageActions.deleteComment({ id }));
   }
