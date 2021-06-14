@@ -85,6 +85,16 @@ export const editCardTitleFailure = createAction(
   props<{ error: any }>()
 );
 
+export const editCardDescriptionSuccess = createAction(
+  '[Board/API] Edit Card Description Success',
+  props<{ card: Card }>()
+);
+
+export const editCardDescriptionFailure = createAction(
+  '[Board/API] Edit Card Description Failure',
+  props<{ error: any }>()
+);
+
 export const addCommentSuccess = createAction(
   '[Board/API] Add Comment Success',
   props<{ comment: Comment }>()

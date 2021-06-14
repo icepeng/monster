@@ -22,6 +22,20 @@ export class CardEffects {
     )
   );
 
+  editDescription$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CardPageActions.editDescription),
+      switchMap((action) =>
+        this.boardApiService.editCardDescription(action.cardId, action.description).pipe(
+          map((card: Card) => BoardApiActions.editCardDescriptionSuccess({ card })),
+          catchError((error) =>
+            of(BoardApiActions.editCardDescriptionFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   addComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CardPageActions.addComment),

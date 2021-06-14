@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromBoard from '@monster/board/reducers';
 import { combineLatest } from 'rxjs';
@@ -14,6 +20,7 @@ import { Card } from '../models';
 })
 export class CardDetailComponent implements OnInit {
   @ViewChild('title') title!: ElementRef;
+  @ViewChild('descriptionArea') descriptionArea!: ElementRef;
 
   card$ = combineLatest([
     this.store.select(fromBoard.selectCardEntities),
@@ -58,7 +65,13 @@ export class CardDetailComponent implements OnInit {
     )
   );
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  editing = false;
+
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -89,9 +102,31 @@ export class CardDetailComponent implements OnInit {
       })
     );
   }
-  
-  editComment(form: {id: string, content: string}) {
-    this.store.dispatch(CardPageActions.editComment({ id: form.id, content:form.content }));
+
+  focusDescription() {
+    this.editing = true;
+    this.changeDetector.detectChanges();
+    this.descriptionArea.nativeElement.select();
+  }
+
+  saveDescription(card: Card, description: string) {
+    this.editing = false;
+    this.store.dispatch(
+      CardPageActions.editDescription({
+        cardId: card.id,
+        description: description,
+      })
+    );
+  }
+
+  cancelDescription() {
+    this.editing = false;
+  }
+
+  editComment(form: { id: string; content: string }) {
+    this.store.dispatch(
+      CardPageActions.editComment({ id: form.id, content: form.content })
+    );
   }
 
   deleteComment(id: string) {

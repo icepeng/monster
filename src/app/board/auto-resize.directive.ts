@@ -17,10 +17,7 @@ export class AutoResizeDirective implements OnInit {
 
   adjust() {
     const target = this.element.nativeElement as HTMLTextAreaElement;
-    const boxSizing = target.style.boxSizing;
-    target.style.boxSizing = 'initial';
-    target.style.height = '0px';
+    target.style.height = '1px';
     target.style.height = target.scrollHeight + 'px';
-    target.style.boxSizing = boxSizing;
   }
 }

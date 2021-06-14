@@ -121,6 +121,18 @@ export class BoardApiService {
     );
   }
 
+  editCardDescription(cardId: string, description: string): Observable<Card> {
+    return this.store.select(fromBoard.selectCardEntities).pipe(
+      take(1),
+      map((cards) => {
+        return {
+          ...cards[cardId]!,
+          description,
+        };
+      })
+    );
+  }
+
   addComment(cardId: string, content: string): Observable<Comment> {
     return of({
       id: generateId(),

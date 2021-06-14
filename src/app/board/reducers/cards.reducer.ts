@@ -46,5 +46,16 @@ export const reducer = createReducer(
       },
       state
     )
+  ),
+  on(BoardApiActions.editCardDescriptionSuccess, (state, { card }) =>
+    adapter.updateOne(
+      {
+        id: card.id,
+        changes: {
+          description: card.description,
+        },
+      },
+      state
+    )
   )
 );

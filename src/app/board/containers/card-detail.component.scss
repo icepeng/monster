@@ -122,6 +122,46 @@
   position: relative;
 }
 
+.description-empty {
+  background-color: rgba(9, 30, 66, 0.04);
+  box-shadow: none;
+  border: none;
+  border-radius: 3px;
+  display: block;
+  min-height: 40px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.description-edit {
+  display: block;
+  float: left;
+  padding-bottom: 9px;
+  z-index: 50;
+  width: 100%;
+}
+
+.description-field {
+  min-height: 108px;
+  background: #fff;
+  box-shadow: none;
+  overflow-wrap: break-word;
+  resize: none;
+  border-color: rgba(9, 30, 66, 0.13);
+  margin-bottom: 4px;
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px #0079bf;
+  }
+}
+
+.edit-controls {
+  clear: both;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+}
+
 .card-detail-data {
   margin-top: 8px;
 }
