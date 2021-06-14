@@ -22,13 +22,14 @@
           <textarea
           #form
           appAutoResize
-          [formControl]="content"
+          [value]="data.content"
           class="comment-box-input"
-          (keydown)="keydownForm($event)"
+          (keydown.escape)="blurEdit()"
+          (keydown.control.enter)="editComment(form.value)"
           ></textarea>
           <div class="comment-controls">
             <button
-              (click)="editComment()"
+              (click)="editComment(form.value)"
               class="btn btn-primary"
               type="button"
             >

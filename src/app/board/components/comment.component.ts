@@ -18,7 +18,6 @@ export class CommentComponent implements OnInit {
   @Output() delete = new EventEmitter();
 
   isEdit = false;
-  content = new FormControl('', [Validators.required])
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 
@@ -29,31 +28,18 @@ export class CommentComponent implements OnInit {
     this.delete.emit(this.data.id);
   }
 
-  editComment() {
-    this.edit.emit({id: this.data.id, content: this.content.value});
+  editComment(content: string) {
+    this.edit.emit({id: this.data.id, content: content});
     this.blurEdit();
   }
 
   focusEdit() {
     this.isEdit = true;
     this.changeDetector.detectChanges();
-      this.content.setValue(this.data.content);
-      this.formEl.nativeElement.select();
+    this.formEl.nativeElement.select();
   }
 
   blurEdit() {
     this.isEdit = false;
-  }
-
-  keydownForm(event: KeyboardEvent) {
-    const target = event.target as HTMLElement;
-    if (event.key === 'Enter') {
-      this.editComment();
-      return;
-    }
-    if (event.key === 'Escape') {
-      this.blurEdit();
-      return;
-    }
   }
 }
