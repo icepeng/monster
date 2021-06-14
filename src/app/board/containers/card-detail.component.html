@@ -69,7 +69,43 @@
       </div>
       <div class="gutter">
         <div class="description-content">
-          <div class="markeddown" [innerHTML]="card.description | marked"></div>
+          <div
+            *ngIf="!editing && card.description"
+            (click)="focusDescription(); $event.stopPropagation()"
+            class="markeddown"
+            [innerHTML]="card.description | marked"
+          ></div>
+          <div
+            *ngIf="!editing && !card.description"
+            (click)="focusDescription(); $event.stopPropagation()"
+            class="description-empty"
+            style="cursor: pointer"
+          >
+            Add a more detailed description…
+          </div>
+          <div
+            (document:click)="saveDescription(card, descriptionArea.value)"
+            (click)="$event.stopPropagation()"
+            *ngIf="editing"
+            class="description-edit"
+          >
+            <textarea
+              #descriptionArea
+              [value]="card.description"
+              class="description-field"
+              appAutoResize
+            ></textarea>
+            <div class="edit-controls">
+              <button
+                (click)="saveDescription(card, descriptionArea.value)"
+                class="btn btn-primary"
+                type="button"
+              >
+                Save
+              </button>
+              <span (click)="cancelDescription()" class="icon-lg icon-close"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
