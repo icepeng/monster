@@ -128,4 +128,8 @@ export class BoardApiService {
       content: content,
     });
   }
+
+  deleteComment(id: string): Observable<string> {
+    return of(id);
+  }
 }

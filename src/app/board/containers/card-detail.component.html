@@ -92,6 +92,7 @@
       <app-comment
         *ngFor="let comment of comments$ | async"
         [data]="comment"
+        (delete)="deleteComment($event)"
       ></app-comment>
     </div>
   </div>

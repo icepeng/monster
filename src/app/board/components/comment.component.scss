@@ -61,3 +61,16 @@
   display: inline-block;
   min-width: 8px;
 }
+
+.action-meta {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+}
+
+.action-meta span {
+  color: #5e6c84;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0 2px 0 2px;
+}

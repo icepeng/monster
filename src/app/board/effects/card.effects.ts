@@ -38,6 +38,22 @@ export class CardEffects {
     )
   );
 
+  deleteComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CardPageActions.deleteComment),
+      switchMap((action) =>
+        this.boardApiService.deleteComment(action.id).pipe(
+          map((id: string) =>
+            BoardApiActions.deleteCommentSuccess({ id })
+          ),
+          catchError((error) =>
+            of(BoardApiActions.deleteCommentFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private boardApiService: BoardApiService
