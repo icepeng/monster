@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Comment } from '../models';
 
 @Component({
@@ -9,10 +9,14 @@ import { Comment } from '../models';
 })
 export class CommentComponent implements OnInit {
   @Input() data!: Comment
+  @Output() delete = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteComment() {
+    this.delete.emit(this.data.id);
+  }
 }

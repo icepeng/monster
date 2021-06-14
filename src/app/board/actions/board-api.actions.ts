@@ -94,3 +94,13 @@ export const addCommentFailure = createAction(
   '[Board/API] Add Comment Failure',
   props<{ error: any }>()
 );
+
+export const deleteCommentSuccess = createAction(
+  '[Board/API] Delete Comment Success',
+  props<{ id: string }>()
+);
+
+export const deleteCommentFailure = createAction(
+  '[Board/API] Delete Comment Failure',
+  props<{ error: any }>()
+);

@@ -89,4 +89,8 @@ export class CardDetailComponent implements OnInit {
       })
     );
   }
+  
+  deleteComment(id: string) {
+    this.store.dispatch(CardPageActions.deleteComment({ id }));
+  }
 }

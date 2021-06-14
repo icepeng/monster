@@ -22,4 +22,7 @@ export const reducer = createReducer(
   on(BoardApiActions.addCommentSuccess, (state, { comment }) =>
     adapter.addOne(comment, state)
   ),
+  on(BoardApiActions.deleteCommentSuccess, (state, { id }) =>
+    adapter.removeOne(id, state)
+  ),
 );
