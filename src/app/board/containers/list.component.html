@@ -21,12 +21,12 @@
       <div
         class="list-cards-droppable"
         cdkDropList
-        *ngIf="cardIds$ | async as cardIds"
+        *ngIf="cards$ | async as cards"
         [attr.id]="data.id"
         [cdkDropListData]="data"
         (cdkDropListDropped)="dropCard($event)"
       >
-        <app-card *ngFor="let cardId of cardIds" [id]="cardId"></app-card>
+        <app-card *ngFor="let card of cards" [card]="card"></app-card>
       </div>
       <app-card-add [listId]="data.id"></app-card-add>
     </div>

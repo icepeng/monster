@@ -1,4 +1,4 @@
-<div [routerLink]="data.id" cdkDrag class="card" *ngIf="data$ | async as data">
+<div [routerLink]="card.id" cdkDrag class="card">
   <div class="card-details">
     <div class="card-labels">
       <app-card-label
@@ -9,30 +9,30 @@
         type="front"
       ></app-card-label>
     </div>
-    <div class="card-title">{{ data.title }}</div>
+    <div class="card-title">{{ card.title }}</div>
     <div class="badges">
       <div
-        *ngIf="data.due"
+        *ngIf="card.due"
         class="badge js-due-date-badge mod-due-date"
-        [ngClass]="getDueClass(data)"
-        (click)="toggleDue(data); $event.stopPropagation()"
+        [ngClass]="getDueClass(card)"
+        (click)="toggleDue(card); $event.stopPropagation()"
         (mouseenter)="dueMouseEnter($event)"
         (mouseleave)="dueMouseLeave($event)"
         title="This card is complete."
       >
         <span *ngIf="!dueHover" class="icon-sm material-icons">schedule</span>
         <span
-          *ngIf="dueHover && data.dueComplete"
+          *ngIf="dueHover && card.dueComplete"
           class="icon-sm material-icons-outlined"
           >check_box</span
         >
         <span
-          *ngIf="dueHover && !data.dueComplete"
+          *ngIf="dueHover && !card.dueComplete"
           class="icon-sm material-icons-outlined"
           >check_box_outline_blank</span
         >
         <span class="badge-text js-due-date-text">{{
-          data.due | date: "MMM d, y"
+          card.due | date: "MMM d, y"
         }}</span>
       </div>
     </div>

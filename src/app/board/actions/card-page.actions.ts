@@ -10,6 +10,11 @@ export const editDescription = createAction(
   props<{ cardId: string; description: string }>()
 );
 
+export const deleteCard = createAction(
+  '[Card Page] Delete Card',
+  props<{ id: string }>()
+);
+
 export const addComment = createAction(
   '[Card Page] Add Comment',
   props<{ cardId: string; content: string }>()

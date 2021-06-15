@@ -8,9 +8,9 @@ import {
 import { Store } from '@ngrx/store';
 import * as fromBoard from '@monster/board/reducers';
 import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { BoardPageActions, CardPageActions } from '../actions';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Card } from '../models';
 
 @Component({
@@ -26,7 +26,8 @@ export class CardDetailComponent implements OnInit {
     this.store.select(fromBoard.selectCardEntities),
     this.route.paramMap,
   ]).pipe(
-    map(([cardEntities, paramMap]) => cardEntities[paramMap.get('cardId')!])
+    map(([cardEntities, paramMap]) => cardEntities[paramMap.get('cardId')!]),
+    filter((card) => !!card)
   );
 
   listName$ = combineLatest([
@@ -70,6 +71,7 @@ export class CardDetailComponent implements OnInit {
   constructor(
     private store: Store,
     private route: ActivatedRoute,
+    private router: Router,
     private changeDetector: ChangeDetectorRef
   ) {}
 
@@ -131,5 +133,10 @@ export class CardDetailComponent implements OnInit {
 
   deleteComment(id: string) {
     this.store.dispatch(CardPageActions.deleteComment({ id }));
+  }
+
+  deleteCard(id: string) {
+    this.store.dispatch(CardPageActions.deleteCard({ id }));
+    this.router.navigate(['../']);
   }
 }

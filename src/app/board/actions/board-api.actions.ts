@@ -95,6 +95,16 @@ export const editCardDescriptionFailure = createAction(
   props<{ error: any }>()
 );
 
+export const deleteCardSuccess = createAction(
+  '[Board/API] Delete Card Success',
+  props<{ id: string }>()
+);
+
+export const deleteCardFailure = createAction(
+  '[Board/API] Delete Card Failure',
+  props<{ error: any }>()
+);
+
 export const addCommentSuccess = createAction(
   '[Board/API] Add Comment Success',
   props<{ comment: Comment }>()

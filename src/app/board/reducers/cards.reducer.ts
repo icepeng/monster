@@ -57,5 +57,8 @@ export const reducer = createReducer(
       },
       state
     )
+  ),
+  on(BoardApiActions.deleteCardSuccess, (state, { id }) =>
+    adapter.removeOne(id, state)
   )
 );
