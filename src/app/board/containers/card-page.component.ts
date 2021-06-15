@@ -1,8 +1,8 @@
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { CardDetailComponent } from './card-detail.component';
 
@@ -12,7 +12,7 @@ import { CardDetailComponent } from './card-detail.component';
   styleUrls: ['./card-page.component.scss'],
 })
 export class CardPageComponent implements OnInit, OnDestroy {
-  subscription$!: Subscription;
+  overlayRef!: OverlayRef;
 
   constructor(
     private overlay: Overlay,
@@ -33,31 +33,28 @@ export class CardPageComponent implements OnInit, OnDestroy {
       positionStrategy,
     });
 
-    this.subscription$ = this.route.paramMap
+    this.route.paramMap
       .pipe(
         map((params) => params.get('cardId')),
         filter((id) => !!id),
-        map(() => this.overlay.create(configs)),
-        tap((overlayRef) =>
-          overlayRef.attach(
-            new ComponentPortal(CardDetailComponent, this.viewContainerRef)
-          )
-        ),
-        switchMap((overlayRef) =>
-          overlayRef.outsidePointerEvents().pipe(
-            filter((e) => e.type === 'click'),
-            take(1),
-            tap(() => {
-              overlayRef.dispose();
-              this.router.navigate(['../']);
-            })
-          )
-        )
+        take(1)
       )
-      .subscribe();
+      .subscribe(() => {
+        this.overlayRef = this.overlay.create(configs);
+        this.overlayRef.attach(
+          new ComponentPortal(CardDetailComponent, this.viewContainerRef)
+        );
+        this.overlayRef
+          .outsidePointerEvents()
+          .pipe(
+            filter((e) => e.type === 'click'),
+            take(1)
+          )
+          .subscribe(() => this.router.navigate(['../']));
+      });
   }
 
   ngOnDestroy() {
-    this.subscription$.unsubscribe();
+    this.overlayRef.dispose();
   }
 }

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BoardPageActions } from '../actions';
-import { List } from '../models';
+import { Card, List } from '../models';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   @ViewChild('title') titleEl!: ElementRef;
   @Input() id!: string;
   data$!: Observable<List>;
-  cardIds$!: Observable<string[]>;
+  cards$!: Observable<Card[]>;
 
   constructor(private store: Store) {}
 
@@ -25,12 +25,11 @@ export class ListComponent implements OnInit {
       .select(fromBoard.selectAllLists)
       .pipe(map((lists) => lists.find((list) => list.id === this.id)!));
 
-    this.cardIds$ = this.store.select(fromBoard.selectAllCards).pipe(
+    this.cards$ = this.store.select(fromBoard.selectAllCards).pipe(
       map((cards) =>
         cards
           .filter((card) => card.listId === this.id)
           .sort((a, b) => a.index - b.index)
-          .map((card) => card.id)
       )
     );
   }

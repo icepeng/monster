@@ -133,6 +133,10 @@ export class BoardApiService {
     );
   }
 
+  deleteCard(id: string): Observable<string> {
+    return of(id);
+  }
+
   addComment(cardId: string, content: string): Observable<Comment> {
     return of({
       id: generateId(),

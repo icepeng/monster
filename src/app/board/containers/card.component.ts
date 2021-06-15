@@ -12,8 +12,7 @@ import { Card, Label } from '../models';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() id!: string;
-  data$!: Observable<Card>;
+  @Input() card!: Card;
   labels$!: Observable<Label[]>;
   labelExpand$!: Observable<boolean>;
 
@@ -22,18 +21,13 @@ export class CardComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.data$ = this.store
-      .select(fromBoard.selectAllCards)
-      .pipe(map((cards) => cards.find((card) => card.id === this.id)!));
-
     this.labels$ = combineLatest([
       this.store.select(fromBoard.selectAllCardLabels),
       this.store.select(fromBoard.selectLabelEntities),
-      this.data$,
     ]).pipe(
-      map(([cardLabels, labelEntities, card]) =>
+      map(([cardLabels, labelEntities]) =>
         cardLabels
-          .filter((x) => x.cardId === card.id)
+          .filter((x) => x.cardId === this.card.id)
           .map((x) => labelEntities[x.labelId]!)
       )
     );
