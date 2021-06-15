@@ -1,4 +1,5 @@
 <div *ngIf="card$ | async as card" class="modal">
+  <button type="button" (click)="close()" class="material-icons icon-md close-button">close</button>
   <div class="modal-header">
     <span class="modal-header-icon material-icons icon-lg">dashboard</span>
     <div class="modal-title">

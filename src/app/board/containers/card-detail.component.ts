@@ -77,6 +77,10 @@ export class CardDetailComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  close() {
+    this.router.navigate(['../'])
+  }
+
   updateTitle(card: Card, title: string) {
     if (card.title === title) {
       return;
