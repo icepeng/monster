@@ -298,6 +298,24 @@
   transition-timing-function: ease;
 }
 
+@media only screen and (max-width: 750px) {
+  .modal-sidebar {
+    clear: both;
+    float: none;
+    margin: 8px;
+    padding: 0;
+    width: auto;
+  
+    h3 {
+      margin-top: 0px;
+    }
+  }
+
+  .action-button {
+    width: 50%;
+  }
+}
+
 .action-button.negate {
   background-color: #b04632;
   box-shadow: none;
