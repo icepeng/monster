@@ -5,12 +5,34 @@
   overflow: hidden;
   width: 768px;
   min-height: 600px;
+  position: relative;
 }
 
 @media only screen and (max-width: 750px) {
   .modal {
     margin: 36px 8px;
     width: auto;
+  }
+}
+
+.close-button {
+  color: #42526e;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  overflow: hidden;
+  padding: 4px;
+  margin: 4px;
+  z-index: 2;
+  transition: background-color 85ms, color 85ms;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(9, 30, 66, 0.08);
+    color: #42526e;
   }
 }
 
@@ -263,7 +285,7 @@
     color: #5e6c84;
     font-size: 12px;
     font-weight: 500;
-    letter-spacing: .04em;
+    letter-spacing: 0.04em;
     line-height: 16px;
     margin-top: 16px;
     text-transform: uppercase;
@@ -273,7 +295,7 @@
 }
 
 .action-button {
-  background-color: rgba(9,30,66,.04);
+  background-color: rgba(9, 30, 66, 0.04);
   text-align: left;
   box-shadow: none;
   border: none;
@@ -293,7 +315,7 @@
   -webkit-user-select: none;
   user-select: none;
   white-space: nowrap;
-  transition-property: background-color,border-color,box-shadow;
+  transition-property: background-color, border-color, box-shadow;
   transition-duration: 85ms;
   transition-timing-function: ease;
 }
