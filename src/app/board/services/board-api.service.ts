@@ -6,7 +6,7 @@ import { map, take } from 'rxjs/operators';
 import { Card, Comment, List } from '../models';
 import { BoardApi } from '../models/board-api';
 import { boardMock, generateId } from './mock';
-import { moveItemIndex, transferArrayItem } from './util';
+import { moveItemIndex, transferArrayItem } from '@icepeng/monster-lib';
 
 @Injectable({
   providedIn: 'root',
