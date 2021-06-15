@@ -60,5 +60,8 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.deleteCardSuccess, (state, { id }) =>
     adapter.removeOne(id, state)
+  ),
+  on(BoardApiActions.deleteListSuccess, (state, { id, cardIds }) =>
+    adapter.removeMany((cards) => cards.listId === id, state)
   )
 );

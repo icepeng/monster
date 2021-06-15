@@ -16,6 +16,9 @@
         (blur)="updateTitle(data, title.value)"
         (keydown)="keydownTitle($event, data)"
       ></textarea>
+      <div class="list-header-extras">
+        <span class="material-icons icon-lg close-button" (click)="deleteList(data.id)">clear</span>
+      </div>
     </div>
     <div class="list-cards">
       <div

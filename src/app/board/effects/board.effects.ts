@@ -53,6 +53,22 @@ export class BoardEffects {
     )
   );
 
+  deleteList$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardPageActions.deleteList),
+      switchMap((action) =>
+        this.boardApiService.deleteList(action.id).pipe(
+          map(({ id, cardIds }) =>
+            BoardApiActions.deleteListSuccess({ id, cardIds })
+          ),
+          catchError((error) =>
+            of(BoardApiActions.deleteListFailure({ error }))
+          )
+        )
+      )
+    )
+  );
+
   editListTitle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.editListTitle),

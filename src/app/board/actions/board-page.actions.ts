@@ -27,6 +27,11 @@ export const moveCard = createAction(
   }>()
 );
 
+export const deleteList = createAction(
+  '[Board Page] Delete List',
+  props<{ id: string }>()
+);
+
 export const toggleCardDue = createAction(
   '[Board Page] Toggle Card Due',
   props<{ cardId: string }>()

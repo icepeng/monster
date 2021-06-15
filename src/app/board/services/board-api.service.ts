@@ -54,6 +54,18 @@ export class BoardApiService {
     );
   }
 
+  deleteList(id: string): Observable<{ id: string, cardIds: string[] }> {
+    return this.store.select(fromBoard.selectAllCards).pipe(
+      take(1),
+      map((cards) => {
+        return {
+          id,
+          cardIds: cards.filter(card => card.listId === id).map(card => card.id),
+        };
+      })
+    );
+  }
+
   addCard(listId: string, title: string): Observable<Card> {
     return this.store.select(fromBoard.selectCardIds).pipe(
       take(1),

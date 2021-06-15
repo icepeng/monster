@@ -35,6 +35,16 @@ export const editListTitleFailure = createAction(
   props<{ error: any }>()
 );
 
+export const deleteListSuccess = createAction(
+  '[Board/API] Delete List Success',
+  props<{ id: string, cardIds: string[] }>()
+);
+
+export const deleteListFailure = createAction(
+  '[Board/API] Delete List Failure',
+  props<{ error: any }>()
+);
+
 export const addCardSuccess = createAction(
   '[Board/API] Add Card Success',
   props<{ card: Card }>()

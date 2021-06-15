@@ -74,4 +74,8 @@ export class ListComponent implements OnInit {
       return;
     }
   }
+
+  deleteList(id: string) {
+    this.store.dispatch(BoardPageActions.deleteList({ id }));
+  }
 }
