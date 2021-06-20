@@ -102,7 +102,7 @@ export class BoardApiService {
 
   editCardDescription(cardId: string, description: string): Observable<Card> {
     return this.http
-      .put<{ card: Card }>(`${environment.apiAddress}/cards/${cardId}/title`, {
+      .put<{ card: Card }>(`${environment.apiAddress}/cards/${cardId}/description`, {
         description,
       })
       .pipe(map((res) => res.card));
