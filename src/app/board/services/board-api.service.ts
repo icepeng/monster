@@ -125,7 +125,7 @@ export class BoardApiService {
 
   editComment(id: number, content: string): Observable<Comment> {
     return this.http
-      .post<{ comment: Comment }>(`${environment.apiAddress}/comments/${id}`, {
+      .put<{ comment: Comment }>(`${environment.apiAddress}/comments/${id}`, {
         content,
       })
       .pipe(map((res) => res.comment));
