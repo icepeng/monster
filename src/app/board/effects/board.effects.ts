@@ -14,8 +14,8 @@ export class BoardEffects {
   loadBoard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.enter),
-      switchMap(() =>
-        this.boardApiService.getBoard().pipe(
+      switchMap((action) =>
+        this.boardApiService.getBoard(action.id).pipe(
           map((board: BoardApi) => BoardApiActions.loadBoardSuccess({ board })),
           catchError((error) => of(BoardApiActions.loadBoardFailure({ error })))
         )
@@ -26,12 +26,21 @@ export class BoardEffects {
   addList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.addList),
-      withLatestFrom(this.store.select(fromBoard.selectBoard)),
-      switchMap(([action, board]) =>
-        this.boardApiService.addList(board.id, action.title).pipe(
-          map((list: List) => BoardApiActions.addListSuccess({ list })),
-          catchError((error) => of(BoardApiActions.addListFailure({ error })))
-        )
+      withLatestFrom(
+        this.store.select(fromBoard.selectBoard),
+        this.store.select(fromBoard.selectAllLists)
+      ),
+      switchMap(([action, board, lists]) =>
+        this.boardApiService
+          .addList(
+            board.id,
+            action.title,
+            lists.filter((x) => x.boardId === board.id).length
+          )
+          .pipe(
+            map((list: List) => BoardApiActions.addListSuccess({ list })),
+            catchError((error) => of(BoardApiActions.addListFailure({ error })))
+          )
       )
     )
   );

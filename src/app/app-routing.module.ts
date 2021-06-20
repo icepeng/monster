@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundPageComponent } from '@monster/core/containers/not-found-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/board/0', pathMatch: 'full' },
+  { path: '', redirectTo: '/board/1', pathMatch: 'full' },
   {
     path: 'board',
     loadChildren: () =>
