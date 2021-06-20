@@ -1,7 +1,8 @@
+import { moveItemIndex } from '@icepeng/monster-lib';
 import { List } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { BoardApiActions } from '../actions';
+import { BoardApiActions, BoardPageActions } from '../actions';
 
 export const listsFeatureKey = 'lists';
 
@@ -22,6 +23,17 @@ export const reducer = createReducer(
   on(BoardApiActions.addListSuccess, (state, { list }) =>
     adapter.addOne(list, state)
   ),
+  on(BoardPageActions.moveList, (state, { boardId, previousIndex, currentIndex }) => {
+    const currentLists = (state.ids as number[]).map(
+      (id) => state.entities[id]!
+    );
+    const lists = moveItemIndex(
+      currentLists.filter((x) => x.boardId === boardId),
+      previousIndex,
+      currentIndex
+    );
+    return adapter.upsertMany(lists, state);
+  }),
   on(BoardApiActions.moveListSuccess, (state, { lists }) =>
     adapter.upsertMany(lists, state)
   ),

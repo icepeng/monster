@@ -1,4 +1,5 @@
-import { BoardApiActions } from '@monster/board/actions';
+import { moveItemIndex, transferArrayItem } from '@icepeng/monster-lib';
+import { BoardApiActions, BoardPageActions } from '@monster/board/actions';
 import { Card } from '@monster/board/models';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
@@ -21,6 +22,31 @@ export const reducer = createReducer(
   ),
   on(BoardApiActions.addCardSuccess, (state, { card }) =>
     adapter.addOne(card, state)
+  ),
+  on(
+    BoardPageActions.moveCard,
+    (state, { previousIndex, currentIndex, previousList, currentList }) => {
+      const currentCards = (state.ids as number[]).map(
+        (id) => state.entities[id]!
+      );
+      if (previousList === currentList) {
+        const cards = moveItemIndex(
+          currentCards.filter((x) => x.listId === currentList),
+          previousIndex,
+          currentIndex
+        );
+        return adapter.upsertMany(cards, state);
+      } else {
+        const cards = transferArrayItem(
+          currentCards.filter((x) => x.listId === previousList),
+          currentCards.filter((x) => x.listId === currentList),
+          previousIndex,
+          currentIndex,
+          currentList
+        );
+        return adapter.upsertMany(cards, state);
+      }
+    }
   ),
   on(BoardApiActions.moveCardSuccess, (state, { cards }) =>
     adapter.upsertMany(cards, state)
