@@ -40,6 +40,7 @@ export class BoardPageComponent implements OnInit {
   dropList(event: CdkDragDrop<null>) {
     this.store.dispatch(
       BoardPageActions.moveList({
+        boardId: parseInt(this.route.snapshot.paramMap.get('boardId')!, 10),
         previousIndex: event.previousIndex,
         currentIndex: event.currentIndex,
       })

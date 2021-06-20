@@ -17,7 +17,7 @@ export const addCard = createAction(
 
 export const moveList = createAction(
   '[Board Page] Move List',
-  props<{ previousIndex: number; currentIndex: number }>()
+  props<{ boardId: number; previousIndex: number; currentIndex: number }>()
 );
 
 export const moveCard = createAction(
