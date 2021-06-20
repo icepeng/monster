@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
@@ -8,7 +9,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ROOT_REDUCERS, metaReducers } from './reducers';
+import { metaReducers, ROOT_REDUCERS } from './reducers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { ROOT_REDUCERS, metaReducers } from './reducers';
     }),
     EffectsModule.forRoot([]),
     CoreModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
