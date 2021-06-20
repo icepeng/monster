@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 export const enter = createAction(
   '[Board Page] Enter',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const addList = createAction(
@@ -12,7 +12,7 @@ export const addList = createAction(
 
 export const addCard = createAction(
   '[Board Page] Add Card',
-  props<{ listId: string; title: string }>()
+  props<{ listId: number; title: string }>()
 );
 
 export const moveList = createAction(
@@ -23,8 +23,8 @@ export const moveList = createAction(
 export const moveCard = createAction(
   '[Board Page] Move Card',
   props<{
-    previousList: string;
-    currentList: string;
+    previousList: number;
+    currentList: number;
     previousIndex: number;
     currentIndex: number;
   }>()
@@ -32,12 +32,12 @@ export const moveCard = createAction(
 
 export const deleteList = createAction(
   '[Board Page] Delete List',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const toggleCardDue = createAction(
   '[Board Page] Toggle Card Due',
-  props<{ cardId: string }>()
+  props<{ cardId: number }>()
 );
 
 export const toggleLabelExpand = createAction(
@@ -46,5 +46,5 @@ export const toggleLabelExpand = createAction(
 
 export const editListTitle = createAction(
   '[Board Page] Edit List Title',
-  props<{ listId: string; title: string }>()
+  props<{ listId: number; title: string }>()
 );

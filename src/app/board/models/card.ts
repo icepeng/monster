@@ -1,6 +1,6 @@
 export interface Card {
-  id: string;
-  listId: string;
+  id: number;
+  listId: number;
   index: number;
   title: string;
   description: string;

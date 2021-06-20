@@ -1,6 +1,6 @@
 export interface List {
-  id: string;
-  boardId: string;
+  id: number;
+  boardId: number;
   index: number;
   title: string;
 }

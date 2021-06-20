@@ -37,7 +37,7 @@ export const editListTitleFailure = createAction(
 
 export const deleteListSuccess = createAction(
   '[Board/API] Delete List Success',
-  props<{ id: string, cardIds: string[] }>()
+  props<{ id: number, cardIds: number[] }>()
 );
 
 export const deleteListFailure = createAction(
@@ -107,7 +107,7 @@ export const editCardDescriptionFailure = createAction(
 
 export const deleteCardSuccess = createAction(
   '[Board/API] Delete Card Success',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteCardFailure = createAction(
@@ -137,7 +137,7 @@ export const editCommentFailure = createAction(
 
 export const deleteCommentSuccess = createAction(
   '[Board/API] Delete Comment Success',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteCommentFailure = createAction(

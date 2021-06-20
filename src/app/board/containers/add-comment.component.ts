@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CardPageActions } from '../actions';
@@ -12,7 +12,7 @@ import { CardPageActions } from '../actions';
 export class AddCommentComponent implements OnInit {
   isFocused = false;
 
-  content = new FormControl('', [Validators.required])
+  content = new FormControl('', [Validators.required]);
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
@@ -35,7 +35,7 @@ export class AddCommentComponent implements OnInit {
   addComment() {
     this.store.dispatch(
       CardPageActions.addComment({
-        cardId: this.route.snapshot.params.cardId,
+        cardId: parseInt(this.route.snapshot.paramMap.get('cardId')!, 10),
         content: this.content.value,
       })
     );

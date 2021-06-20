@@ -15,14 +15,14 @@ import { Board } from '../models';
 })
 export class BoardPageComponent implements OnInit {
   data$!: Observable<Board>;
-  listIds$!: Observable<string[]>;
+  listIds$!: Observable<number[]>;
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.store.dispatch(
       BoardPageActions.enter({
-        id: this.route.snapshot.paramMap.get('boardId')!,
+        id: parseInt(this.route.snapshot.paramMap.get('boardId')!, 10),
       })
     );
 

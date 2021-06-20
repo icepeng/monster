@@ -41,7 +41,7 @@ export class CardEffects {
       ofType(CardPageActions.deleteCard),
       switchMap((action) =>
         this.boardApiService.deleteCard(action.id).pipe(
-          map((id: string) =>
+          map((id: number) =>
             BoardApiActions.deleteCardSuccess({ id })
           ),
           catchError((error) =>
@@ -89,7 +89,7 @@ export class CardEffects {
       ofType(CardPageActions.deleteComment),
       switchMap((action) =>
         this.boardApiService.deleteComment(action.id).pipe(
-          map((id: string) =>
+          map((id: number) =>
             BoardApiActions.deleteCommentSuccess({ id })
           ),
           catchError((error) =>

@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./card.component.scss', './card-add.component.scss'],
 })
 export class CardAddComponent implements OnInit {
-  @Input() listId!: string;
+  @Input() listId!: number;
 
   isOpen = false;
 
