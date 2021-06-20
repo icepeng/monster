@@ -86,11 +86,18 @@ export class BoardEffects {
   addCard$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.addCard),
-      switchMap((action) =>
-        this.boardApiService.addCard(action.listId, action.title).pipe(
-          map((card: Card) => BoardApiActions.addCardSuccess({ card })),
-          catchError((error) => of(BoardApiActions.addCardFailure({ error })))
-        )
+      withLatestFrom(this.store.select(fromBoard.selectAllCards)),
+      switchMap(([action, cards]) =>
+        this.boardApiService
+          .addCard(
+            action.listId,
+            action.title,
+            cards.filter((x) => x.listId === action.listId).length
+          )
+          .pipe(
+            map((card: Card) => BoardApiActions.addCardSuccess({ card })),
+            catchError((error) => of(BoardApiActions.addCardFailure({ error })))
+          )
       )
     )
   );
@@ -119,13 +126,19 @@ export class BoardEffects {
   toggleCardDue$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BoardPageActions.toggleCardDue),
-      switchMap((action) =>
-        this.boardApiService.toggleCardDue(action.cardId).pipe(
-          map((card: Card) => BoardApiActions.toggleCardDueSuccess({ card })),
-          catchError((error) =>
-            of(BoardApiActions.toggleCardDueFailure({ error }))
+      withLatestFrom(this.store.select(fromBoard.selectAllCards)),
+      switchMap(([action, cards]) =>
+        this.boardApiService
+          .setDueComplete(
+            action.cardId,
+            !cards.find((x) => x.id === action.cardId)?.dueComplete
           )
-        )
+          .pipe(
+            map((card: Card) => BoardApiActions.toggleCardDueSuccess({ card })),
+            catchError((error) =>
+              of(BoardApiActions.toggleCardDueFailure({ error }))
+            )
+          )
       )
     )
   );
