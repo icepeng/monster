@@ -14,7 +14,7 @@ import { Card, List } from '../models';
 })
 export class ListComponent implements OnInit {
   @ViewChild('title') titleEl!: ElementRef;
-  @Input() id!: string;
+  @Input() id!: number;
   data$!: Observable<List>;
   cards$!: Observable<Card[]>;
 
@@ -75,7 +75,7 @@ export class ListComponent implements OnInit {
     }
   }
 
-  deleteList(id: string) {
+  deleteList(id: number) {
     this.store.dispatch(BoardPageActions.deleteList({ id }));
   }
 }

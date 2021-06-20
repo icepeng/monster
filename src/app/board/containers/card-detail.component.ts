@@ -129,17 +129,17 @@ export class CardDetailComponent implements OnInit {
     this.editing = false;
   }
 
-  editComment(form: { id: string; content: string }) {
+  editComment(form: { id: number; content: string }) {
     this.store.dispatch(
       CardPageActions.editComment({ id: form.id, content: form.content })
     );
   }
 
-  deleteComment(id: string) {
+  deleteComment(id: number) {
     this.store.dispatch(CardPageActions.deleteComment({ id }));
   }
 
-  deleteCard(id: string) {
+  deleteCard(id: number) {
     this.store.dispatch(CardPageActions.deleteCard({ id }));
     this.router.navigate(['../']);
   }

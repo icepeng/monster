@@ -1,5 +1,5 @@
 export interface CardLabel {
-  id: string;
-  cardId: string;
-  labelId: string;
+  id: number;
+  cardId: number;
+  labelId: number;
 }

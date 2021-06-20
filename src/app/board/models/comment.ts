@@ -1,5 +1,5 @@
 export interface Comment {
-  id: string;
-  cardId: string;
+  id: number;
+  cardId: number;
   content: string;
 }

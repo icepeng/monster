@@ -2,30 +2,30 @@ import { createAction, props } from '@ngrx/store';
 
 export const editTitle = createAction(
   '[Card Page] Edit title',
-  props<{ id: string; title: string }>()
+  props<{ id: number; title: string }>()
 );
 
 export const editDescription = createAction(
   '[Card Page] Edit Description',
-  props<{ cardId: string; description: string }>()
+  props<{ cardId: number; description: string }>()
 );
 
 export const deleteCard = createAction(
   '[Card Page] Delete Card',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const addComment = createAction(
   '[Card Page] Add Comment',
-  props<{ cardId: string; content: string }>()
+  props<{ cardId: number; content: string }>()
 );
 
 export const editComment = createAction(
   '[Card Page] Edit comment',
-  props<{ id: string; content: string }>()
+  props<{ id: number; content: string }>()
 );
 
 export const deleteComment = createAction(
   '[Card Page] Delete comment',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );

@@ -1,6 +1,6 @@
 export interface Label {
-  id: string;
-  boardId: string;
+  id: number;
+  boardId: number;
   title: string;
   color: string;
 }

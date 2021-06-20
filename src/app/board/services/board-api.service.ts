@@ -13,11 +13,11 @@ import { BoardApi } from '../models/board-api';
 export class BoardApiService {
   constructor(private store: Store, private http: HttpClient) {}
 
-  getBoard(id: string): Observable<BoardApi> {
+  getBoard(id: number): Observable<BoardApi> {
     return this.http.get<BoardApi>(`${environment.apiAddress}/boards/${id}`);
   }
 
-  addList(boardId: string, title: string, index: number): Observable<List> {
+  addList(boardId: number, title: string, index: number): Observable<List> {
     return this.http
       .post<{ list: List }>(`${environment.apiAddress}/lists`, {
         boardId,
@@ -28,7 +28,7 @@ export class BoardApiService {
   }
 
   moveList(
-    boardId: string,
+    boardId: number,
     previousIndex: number,
     currentIndex: number
   ): Observable<List[]> {
@@ -41,7 +41,7 @@ export class BoardApiService {
       .pipe(map((res) => res.lists));
   }
 
-  editListTitle(listId: string, title: string): Observable<List> {
+  editListTitle(listId: number, title: string): Observable<List> {
     return this.http
       .put<{ list: List }>(`${environment.apiAddress}/lists/${listId}/title`, {
         title,
@@ -49,13 +49,13 @@ export class BoardApiService {
       .pipe(map((res) => res.list));
   }
 
-  deleteList(id: string): Observable<{ id: string; cardIds: string[] }> {
-    return this.http.delete<{ id: string; cardIds: string[] }>(
+  deleteList(id: number): Observable<{ id: number; cardIds: number[] }> {
+    return this.http.delete<{ id: number; cardIds: number[] }>(
       `${environment.apiAddress}/lists/${id}`
     );
   }
 
-  addCard(listId: string, title: string, index: number): Observable<Card> {
+  addCard(listId: number, title: string, index: number): Observable<Card> {
     return this.http
       .post<{ card: Card }>(`${environment.apiAddress}/cards`, {
         listId,
@@ -66,8 +66,8 @@ export class BoardApiService {
   }
 
   moveCard(
-    previousListId: string,
-    currentListId: string,
+    previousListId: number,
+    currentListId: number,
     previousIndex: number,
     currentIndex: number
   ): Observable<Card[]> {
@@ -81,7 +81,7 @@ export class BoardApiService {
       .pipe(map((res) => res.cards));
   }
 
-  setDueComplete(cardId: string, dueComplete: boolean): Observable<Card> {
+  setDueComplete(cardId: number, dueComplete: boolean): Observable<Card> {
     return this.http
       .put<{ card: Card }>(
         `${environment.apiAddress}/cards/${cardId}/dueComplete`,
@@ -92,7 +92,7 @@ export class BoardApiService {
       .pipe(map((res) => res.card));
   }
 
-  editCardTitle(cardId: string, title: string): Observable<Card> {
+  editCardTitle(cardId: number, title: string): Observable<Card> {
     return this.http
       .put<{ card: Card }>(`${environment.apiAddress}/cards/${cardId}/title`, {
         title,
@@ -100,7 +100,7 @@ export class BoardApiService {
       .pipe(map((res) => res.card));
   }
 
-  editCardDescription(cardId: string, description: string): Observable<Card> {
+  editCardDescription(cardId: number, description: string): Observable<Card> {
     return this.http
       .put<{ card: Card }>(`${environment.apiAddress}/cards/${cardId}/description`, {
         description,
@@ -108,13 +108,13 @@ export class BoardApiService {
       .pipe(map((res) => res.card));
   }
 
-  deleteCard(id: string): Observable<string> {
+  deleteCard(id: number): Observable<number> {
     return this.http
-      .delete<{ id: string }>(`${environment.apiAddress}/cards/${id}`)
+      .delete<{ id: number }>(`${environment.apiAddress}/cards/${id}`)
       .pipe(map((res) => res.id));
   }
 
-  addComment(cardId: string, content: string): Observable<Comment> {
+  addComment(cardId: number, content: string): Observable<Comment> {
     return this.http
       .post<{ comment: Comment }>(`${environment.apiAddress}/comments`, {
         cardId,
@@ -123,7 +123,7 @@ export class BoardApiService {
       .pipe(map((res) => res.comment));
   }
 
-  editComment(id: string, content: string): Observable<Comment> {
+  editComment(id: number, content: string): Observable<Comment> {
     return this.http
       .post<{ comment: Comment }>(`${environment.apiAddress}/comments/${id}`, {
         content,
@@ -131,9 +131,9 @@ export class BoardApiService {
       .pipe(map((res) => res.comment));
   }
 
-  deleteComment(id: string): Observable<string> {
+  deleteComment(id: number): Observable<number> {
     return this.http
-      .delete<{ id: string }>(`${environment.apiAddress}/comments/${id}`)
+      .delete<{ id: number }>(`${environment.apiAddress}/comments/${id}`)
       .pipe(map((res) => res.id));
   }
 }
