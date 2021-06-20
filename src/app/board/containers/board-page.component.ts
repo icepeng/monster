@@ -1,5 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as fromBoard from '@monster/board/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,10 +17,14 @@ export class BoardPageComponent implements OnInit {
   data$!: Observable<Board>;
   listIds$!: Observable<string[]>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.store.dispatch(BoardPageActions.enter());
+    this.store.dispatch(
+      BoardPageActions.enter({
+        id: this.route.snapshot.paramMap.get('boardId')!,
+      })
+    );
 
     this.data$ = this.store.select(fromBoard.selectBoard);
 

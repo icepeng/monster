@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { moveItemIndex, transferArrayItem } from '@icepeng/monster-lib';
-import * as fromBoard from '@monster/board/reducers';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Card, Comment, List } from '../models';
 import { BoardApi } from '../models/board-api';
-import { boardMock, generateId } from './mock';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +13,18 @@ import { boardMock, generateId } from './mock';
 export class BoardApiService {
   constructor(private store: Store, private http: HttpClient) {}
 
-  getBoard(): Observable<BoardApi> {
-    return of(boardMock);
+  getBoard(id: string): Observable<BoardApi> {
+    return this.http.get<BoardApi>(`${environment.apiAddress}/boards/${id}`);
   }
 
-  addList(boardId: string, title: string): Observable<List> {
-    return this.store.select(fromBoard.selectListIds).pipe(
-      take(1),
-      map((ids) => ({
-        id: generateId(),
-        index: ids.length,
-        boardId: boardId,
-        title: title,
-      }))
-    );
+  addList(boardId: string, title: string, index: number): Observable<List> {
+    return this.http
+      .post<{ list: List }>(`${environment.apiAddress}/lists`, {
+        boardId,
+        title,
+        index,
+      })
+      .pipe(map((res) => res.list));
   }
 
   moveList(
@@ -37,36 +32,26 @@ export class BoardApiService {
     previousIndex: number,
     currentIndex: number
   ): Observable<List[]> {
-    return this.store.select(fromBoard.selectAllLists).pipe(
-      take(1),
-      map((lists) => lists.filter((list) => list.boardId === boardId)),
-      map((lists) => moveItemIndex(lists, previousIndex, currentIndex))
-    );
+    return this.http
+      .post<{ lists: List[] }>(`${environment.apiAddress}/lists/move`, {
+        boardId,
+        previousIndex,
+        currentIndex,
+      })
+      .pipe(map((res) => res.lists));
   }
 
   editListTitle(listId: string, title: string): Observable<List> {
-    return this.store.select(fromBoard.selectListEntities).pipe(
-      take(1),
-      map((lists) => {
-        return {
-          ...lists[listId]!,
-          title,
-        };
+    return this.http
+      .put<{ list: List }>(`${environment.apiAddress}/lists/${listId}/title`, {
+        title,
       })
-    );
+      .pipe(map((res) => res.list));
   }
 
   deleteList(id: string): Observable<{ id: string; cardIds: string[] }> {
-    return this.store.select(fromBoard.selectAllCards).pipe(
-      take(1),
-      map((cards) => {
-        return {
-          id,
-          cardIds: cards
-            .filter((card) => card.listId === id)
-            .map((card) => card.id),
-        };
-      })
+    return this.http.delete<{ id: string; cardIds: string[] }>(
+      `${environment.apiAddress}/lists/${id}`
     );
   }
 
@@ -86,26 +71,14 @@ export class BoardApiService {
     previousIndex: number,
     currentIndex: number
   ): Observable<Card[]> {
-    return this.store.select(fromBoard.selectAllCards).pipe(
-      take(1),
-      map((cards) => [
-        cards.filter((card) => card.listId === previousListId),
-        cards.filter((card) => card.listId === currentListId),
-      ]),
-      map(([prev, curr]) => {
-        if (previousListId === currentListId) {
-          return moveItemIndex(prev, previousIndex, currentIndex);
-        } else {
-          return transferArrayItem(
-            prev,
-            curr,
-            previousIndex,
-            currentIndex,
-            currentListId
-          );
-        }
+    return this.http
+      .post<{ cards: Card[] }>(`${environment.apiAddress}/cards/move`, {
+        previousListId,
+        currentListId,
+        previousIndex,
+        currentIndex,
       })
-    );
+      .pipe(map((res) => res.cards));
   }
 
   setDueComplete(cardId: string, dueComplete: boolean): Observable<Card> {
@@ -142,26 +115,25 @@ export class BoardApiService {
   }
 
   addComment(cardId: string, content: string): Observable<Comment> {
-    return of({
-      id: generateId(),
-      cardId: cardId,
-      content: content,
-    });
+    return this.http
+      .post<{ comment: Comment }>(`${environment.apiAddress}/comments`, {
+        cardId,
+        content,
+      })
+      .pipe(map((res) => res.comment));
   }
 
   editComment(id: string, content: string): Observable<Comment> {
-    return this.store.select(fromBoard.selectCommentEntities).pipe(
-      take(1),
-      map((comments) => {
-        return {
-          ...comments[id]!,
-          content,
-        };
+    return this.http
+      .post<{ comment: Comment }>(`${environment.apiAddress}/comments/${id}`, {
+        content,
       })
-    );
+      .pipe(map((res) => res.comment));
   }
 
   deleteComment(id: string): Observable<string> {
-    return of(id);
+    return this.http
+      .delete<{ id: string }>(`${environment.apiAddress}/comments/${id}`)
+      .pipe(map((res) => res.id));
   }
 }
